@@ -21,7 +21,7 @@ public class ExcelUtils {
 	    public Map<String, String> getRowData(String sheetName, int rowIndex) {
 	        Sheet sheet = workbook.getSheet(sheetName);
 	        Row row = sheet.getRow(rowIndex);
-	        Map<String, String> rowData = new HashMap<String, String>();
+	        Map<String, String> rowData = new HashMap<>();
 
 	        for (int i = 0; i < row.getLastCellNum(); i++) {
 	            Cell cell = row.getCell(i);
@@ -33,10 +33,27 @@ public class ExcelUtils {
 	                        cellValue = cell.getStringCellValue();
 	                        break;
 	                    case NUMERIC:
-	                        // Handle numeric values appropriately
-	                        cellValue = String.valueOf(cell.getNumericCellValue());
+	                        if (DateUtil.isCellDateFormatted(cell)) {
+	                            cellValue = cell.getDateCellValue().toString(); // Handle date values if needed
+	                        } else {
+	                            cellValue = String.valueOf((int) cell.getNumericCellValue()); // Convert numeric to integer string
+	                        }
 	                        break;
-	                    // Handle other cell types if needed
+	                    case BOOLEAN:
+	                        cellValue = String.valueOf(cell.getBooleanCellValue());
+	                        break;
+	                    case FORMULA:
+	                        switch (cell.getCachedFormulaResultType()) {
+	                            case NUMERIC:
+	                                cellValue = String.valueOf((int) cell.getNumericCellValue());
+	                                break;
+	                            case STRING:
+	                                cellValue = cell.getRichStringCellValue().toString();
+	                                break;
+	                        }
+	                        break;
+	                    default:
+	                        cellValue = "";
 	                }
 	            }
 

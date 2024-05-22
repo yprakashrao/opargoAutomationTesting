@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed May 22 17:22:57 IST 2024</td>
+<td>Started on:</td><td>Wed May 22 23:07:28 IST 2024</td>
 </tr>
-<tr><td>Total time:</td><td>7 seconds (7174 ms)</td>
+<tr><td>Total time:</td><td>60 seconds (60852 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,13 +76,30 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.example.loadtest.load_test_project.OpargoLoginPage.loginPage()'><b>loginPage</b><br>Test class: com.example.loadtest.load_test_project.OpargoLoginPage</td>
-<td><div><pre>java.lang.IllegalStateException: Cannot get a STRING value from a NUMERIC cell
-	at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:987)
-	at org.apache.poi.xssf.usermodel.XSSFCell.getRichStringCellValue(XSSFCell.java:336)
-	at org.apache.poi.xssf.usermodel.XSSFCell.getStringCellValue(XSSFCell.java:280)
-	at com.example.loadtest.load_test_project.ExcelUtils.getRowData(ExcelUtils.java:29)
-	at com.example.loadtest.load_test_project.OpargoLoginPage.loginPage(OpargoLoginPage.java:55)
+<td title='com.example.loadtest.OpargoLoginPage.loginPage()'><b>loginPage</b><br>Test class: com.example.loadtest.OpargoLoginPage</td>
+<td><div><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;input _ngcontent-hhd-c371=&quot;&quot; type=&quot;text&quot; matinput=&quot;&quot; class=&quot;mat-autocomplete-trigger mat-input-element mat-form-field-autofill-control ng-tns-c142-6 ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored&quot; autocomplete=&quot;off&quot; role=&quot;combobox&quot; aria-autocomplete=&quot;list&quot; aria-expanded=&quot;false&quot; aria-haspopup=&quot;listbox&quot; id=&quot;mat-input-2&quot; data-placeholder=&quot;Select referring provider&quot; aria-invalid=&quot;false&quot; aria-required=&quot;false&quot;&gt; is not clickable at point (682, 585). Other element would receive the click: &lt;li _ngcontent-aju-c340=&quot;&quot; class=&quot;ng-binding&quot;&gt;...&lt;/li&gt;
+  (Session info: chrome=126.0.6423.2)
+Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c372b95c9bc4cf569accb169132f1986, clickElement {id=f.CD70296C3B5F98A1BA3ED63A17D49882.d.AFBCAE50D243EE642EF6BC076BFC5060.e.81}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58624}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58624/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c372b95c9bc4cf569accb169132f1986)] -&gt; id: mat-input-2]
+Session ID: c372b95c9bc4cf569accb169132f1986
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.example.loadtest.OpargoLoginPage.loginPage(OpargoLoginPage.java:249)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -111,13 +128,30 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace233271858", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace233271858'><pre>java.lang.IllegalStateException: Cannot get a STRING value from a NUMERIC cell
-	at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:987)
-	at org.apache.poi.xssf.usermodel.XSSFCell.getRichStringCellValue(XSSFCell.java:336)
-	at org.apache.poi.xssf.usermodel.XSSFCell.getStringCellValue(XSSFCell.java:280)
-	at com.example.loadtest.load_test_project.ExcelUtils.getRowData(ExcelUtils.java:29)
-	at com.example.loadtest.load_test_project.OpargoLoginPage.loginPage(OpargoLoginPage.java:55)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1268786037", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1268786037'><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;input _ngcontent-hhd-c371=&quot;&quot; type=&quot;text&quot; matinput=&quot;&quot; class=&quot;mat-autocomplete-trigger mat-input-element mat-form-field-autofill-control ng-tns-c142-6 ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored&quot; autocomplete=&quot;off&quot; role=&quot;combobox&quot; aria-autocomplete=&quot;list&quot; aria-expanded=&quot;false&quot; aria-haspopup=&quot;listbox&quot; id=&quot;mat-input-2&quot; data-placeholder=&quot;Select referring provider&quot; aria-invalid=&quot;false&quot; aria-required=&quot;false&quot;&gt; is not clickable at point (682, 585). Other element would receive the click: &lt;li _ngcontent-aju-c340=&quot;&quot; class=&quot;ng-binding&quot;&gt;...&lt;/li&gt;
+  (Session info: chrome=126.0.6423.2)
+Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c372b95c9bc4cf569accb169132f1986, clickElement {id=f.CD70296C3B5F98A1BA3ED63A17D49882.d.AFBCAE50D243EE642EF6BC076BFC5060.e.81}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58624}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58624/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c372b95c9bc4cf569accb169132f1986)] -&gt; id: mat-input-2]
+Session ID: c372b95c9bc4cf569accb169132f1986
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.example.loadtest.OpargoLoginPage.loginPage(OpargoLoginPage.java:249)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -147,8 +181,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>2</td>
-<td>com.example.loadtest.load_test_project.OpargoLoginPage@117159c0</td></tr>
+<td>56</td>
+<td>com.example.loadtest.OpargoLoginPage@117159c0</td></tr>
 </table><p>
 </body>
 </html>

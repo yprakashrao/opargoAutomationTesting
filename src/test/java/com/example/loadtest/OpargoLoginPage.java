@@ -36,7 +36,7 @@ public class OpargoLoginPage{
 	    public void setUp() {
 	        System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
 	        ChromeOptions options = new ChromeOptions();
-	        options.addExtensions(new File("C:\\workspace\\BE\\loadtesting\\load-test-project\\mpbjkejclgfgadiemmefgebjfooflfhl-2.0.1-Crx4Chrome.com.crx"));
+//	        options.addExtensions(new File("C:\\workspace\\BE\\loadtesting\\load-test-project\\mpbjkejclgfgadiemmefgebjfooflfhl-2.0.1-Crx4Chrome.com.crx"));
 	        options.addArguments("--start-maximized");
 	        System.out.println();
 	        driver = new ChromeDriver(options);
@@ -50,8 +50,8 @@ public class OpargoLoginPage{
 	 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
 	  
         driver.get("http://127.0.0.1:90/#/login");
-        ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\loadtesting\\load-test-project\\src\\resources\\test-data\\input-data.xlsx");
-        Map<String, String> data = excel.getRowData("Sheet1",1);
+        ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.csv");
+        Map<String, String> data = excel.getRowData("Sheet1",2);
         System.out.println("Page Title is " + driver.getTitle());
         Assert.assertEquals("Opargo", driver.getTitle());
         WebElement usernameField = driver.findElement(By.name("username"));
@@ -76,17 +76,17 @@ public class OpargoLoginPage{
 
         lastNameField.clear();
 
-        lastNameField.sendKeys("kumar");
+        lastNameField.sendKeys(data.get("patientLastName"));
         WebElement firstNameField = driver.findElement(By.name("patientFirstName"));
-        firstNameField.sendKeys("sumith");
-//        WebElement middleNameField = driver.findElement(By.name("patientMiddleName"));
-//        middleNameField.sendKeys("rao");
+        firstNameField.sendKeys(data.get("patientFirstName"));
+        WebElement middleNameField = driver.findElement(By.name("patientMiddleName"));
+        middleNameField.sendKeys(data.get("patientMiddleName"));
         WebElement birthMonthField = driver.findElement(By.name("patientBirthMonth"));
-        birthMonthField.sendKeys("11");
+        birthMonthField.sendKeys(data.get("patientBirthMonth"));
         WebElement birthDayField = driver.findElement(By.name("patientBirthDay"));
-        birthDayField.sendKeys("29");
+        birthDayField.sendKeys(data.get("patientBirthDay"));
         WebElement birthYearField = driver.findElement(By.name("patientBirthYear"));
-        birthYearField.sendKeys("1994");
+        birthYearField.sendKeys(data.get("patientBirthYear"));
         WebElement patientLookupButton = driver.findElement(By.cssSelector("input[type='submit'][value='Patient Lookup'].primary-btn"));
         patientLookupButton.click();
         Thread.sleep(10000);
@@ -116,13 +116,13 @@ public class OpargoLoginPage{
         js.executeScript("arguments[0].dispatchEvent(new Event('change'));", ethnicityDropdown);
         
         WebElement addressInput = driver.findElement(By.name("patientAddress1"));
-        addressInput.sendKeys("123 Main Street");
+        addressInput.sendKeys(data.get("patientAddress1"));
         
         WebElement addressField2 = driver.findElement(By.name("patientAddress2"));
-        addressField2.sendKeys("Peddamberpet");
+        addressField2.sendKeys(data.get("patientAddress2"));
         
         WebElement cityField = driver.findElement(By.name("patientCity"));
-        cityField.sendKeys("Hyderabad");
+        cityField.sendKeys(data.get("patientCity"));
         
         WebElement stateDropdown = driver.findElement(By.name("patientState"));
         Thread.sleep(50);
@@ -130,19 +130,19 @@ public class OpargoLoginPage{
         js.executeScript("arguments[0].dispatchEvent(new Event('change'));", stateDropdown);
         
         WebElement zipCodeField = driver.findElement(By.name("patientZip"));
-        zipCodeField.sendKeys("12345");
+        zipCodeField.sendKeys(data.get("patientZip"));
         
         WebElement phoneField = driver.findElement(By.name("patientPrimaryPhone"));
-        phoneField.sendKeys("1234567890");
+        phoneField.sendKeys(data.get("patientPrimaryPhone"));
         
         WebElement secondaryPhoneField = driver.findElement(By.name("patientSecondaryPhone"));
-        secondaryPhoneField.sendKeys("9876543210");
+        secondaryPhoneField.sendKeys(data.get("patientSecondaryPhone"));
         
         WebElement emailField = driver.findElement(By.name("patientEmail"));
-        emailField.sendKeys("example@example.com");
+        emailField.sendKeys(data.get("patientEmail"));
         
         WebElement commentsTextarea = driver.findElement(By.name("patientComments"));
-        commentsTextarea.sendKeys("This is a sample comment for testing purposes.");
+        commentsTextarea.sendKeys(data.get("patientComments"));
 
         Thread.sleep(200);
         System.out.println("Entered additional details successfully...");
@@ -163,10 +163,10 @@ public class OpargoLoginPage{
         Thread.sleep(200);
         
         WebElement insuranceIdInput = driver.findElement(By.name("insuranceID"));
-        insuranceIdInput.sendKeys("123456789"); // Replace "1234567890" with the desired insurance ID
+        insuranceIdInput.sendKeys(data.get("insuranceID")); // Replace "1234567890" with the desired insurance ID
         
         WebElement groupNumberInput = driver.findElement(By.name("insuranceGroupNumber"));
-        groupNumberInput.sendKeys("123456"); // Replace "123456" with the desired group number
+        groupNumberInput.sendKeys(data.get("insuranceGroupNumber")); // Replace "123456" with the desired group number
         
         Thread.sleep(100);
         
@@ -192,7 +192,7 @@ public class OpargoLoginPage{
         //Thread.sleep(2000);
         WebElement insurancePhoneInput = driver.findElement(By.name("insurancePhone"));
         insurancePhoneInput.clear();
-        insurancePhoneInput.sendKeys("1234567890");
+        insurancePhoneInput.sendKeys(data.get("insurancePhone"));
         Thread.sleep(50);
         
         //SELECTING SECONDARY INSURANCE PROVIDER
@@ -205,9 +205,9 @@ public class OpargoLoginPage{
 
         
         WebElement insuranceIdField = driver.findElement(By.name("secondaryInsuranceID"));
-        insuranceIdField.sendKeys("ABC12345");
+        insuranceIdField.sendKeys(data.get("secondaryInsuranceID"));
         WebElement groupNumberField = driver.findElement(By.name("secondaryInsuranceGroupNumber"));
-        groupNumberField.sendKeys("GRP56789");
+        groupNumberField.sendKeys(data.get("secondaryInsuranceGroupNumber"));
         Thread.sleep(50);
         
         // Locate and click the second date picker toggle button
@@ -230,7 +230,7 @@ public class OpargoLoginPage{
         
         
         WebElement phoneField1 = driver.findElement(By.xpath("//input[@name='secondaryInsurancePhone']"));
-        phoneField1.sendKeys("1234567890");
+        phoneField1.sendKeys(data.get("secondaryInsurancePhone"));
         System.out.println("Successfully entered secondary phone");
         
         Thread.sleep(1000);
@@ -339,7 +339,7 @@ public class OpargoLoginPage{
         patientLocationOpt_dropdown.selectByVisibleText("Left");
         
         WebElement textareaElement = driver.findElement(By.name("notes"));
-        textareaElement.sendKeys("This is a test note.");
+        textareaElement.sendKeys(data.get("notes"));
         
         WebElement buttonElement = driver.findElement(By.xpath("//input[@type='button' and @value='Find First Available']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonElement);

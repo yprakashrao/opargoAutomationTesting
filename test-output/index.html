@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\solve\AppData\Local\Temp\testng-eclipse-858105473\testng-customsuite.xml</span>
+                    <span>C:\Users\solve\AppData\Local\Temp\testng-eclipse--1233775271\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.example.loadtest.load_test_project.OpargoLoginPage" class="method navigator-link" hash-for-method="loginPage">loginPage</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.example.loadtest.OpargoLoginPage" class="method navigator-link" hash-for-method="loginPage">loginPage</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,7 +121,7 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.example.loadtest.load_test_project.OpargoLoginPage</span>
+              <span class="class-name">com.example.loadtest.OpargoLoginPage</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -129,12 +129,29 @@
                   <a name="loginPage">
                   </a> <!-- loginPage -->
                   <span class="method-name">loginPage</span>
-                  <div class="stack-trace">java.lang.IllegalStateException: Cannot get a STRING value from a NUMERIC cell
-	at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:987)
-	at org.apache.poi.xssf.usermodel.XSSFCell.getRichStringCellValue(XSSFCell.java:336)
-	at org.apache.poi.xssf.usermodel.XSSFCell.getStringCellValue(XSSFCell.java:280)
-	at com.example.loadtest.load_test_project.ExcelUtils.getRowData(ExcelUtils.java:29)
-	at com.example.loadtest.load_test_project.OpargoLoginPage.loginPage(OpargoLoginPage.java:55)
+                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;input _ngcontent-hhd-c371=&quot;&quot; type=&quot;text&quot; matinput=&quot;&quot; class=&quot;mat-autocomplete-trigger mat-input-element mat-form-field-autofill-control ng-tns-c142-6 ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored&quot; autocomplete=&quot;off&quot; role=&quot;combobox&quot; aria-autocomplete=&quot;list&quot; aria-expanded=&quot;false&quot; aria-haspopup=&quot;listbox&quot; id=&quot;mat-input-2&quot; data-placeholder=&quot;Select referring provider&quot; aria-invalid=&quot;false&quot; aria-required=&quot;false&quot;&gt; is not clickable at point (682, 585). Other element would receive the click: &lt;li _ngcontent-aju-c340=&quot;&quot; class=&quot;ng-binding&quot;&gt;...&lt;/li&gt;
+  (Session info: chrome=126.0.6423.2)
+Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c372b95c9bc4cf569accb169132f1986, clickElement {id=f.CD70296C3B5F98A1BA3ED63A17D49882.d.AFBCAE50D243EE642EF6BC076BFC5060.e.81}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58624}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58624/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c372b95c9bc4cf569accb169132f1986)] -&gt; id: mat-input-2]
+Session ID: c372b95c9bc4cf569accb169132f1986
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.example.loadtest.OpargoLoginPage.loginPage(OpargoLoginPage.java:249)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -172,7 +189,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\solve\AppData\Local\Temp\testng-eclipse-858105473\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\solve\AppData\Local\Temp\testng-eclipse--1233775271\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -181,7 +198,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.example.loadtest.load_test_project.OpargoLoginPage&quot;/&gt;
+      &lt;class name=&quot;com.example.loadtest.OpargoLoginPage&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -224,13 +241,13 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'loginPage')
-data.setCell(0, 2, 'com.example.loadtest.load_test_project.OpargoLoginPage')
-data.setCell(0, 3, 2410);
+data.setCell(0, 2, 'com.example.loadtest.OpargoLoginPage')
+data.setCell(0, 3, 56420);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 seconds</span>
+              <span class="suite-total-time">Total running time: 56 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -256,7 +273,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.example.loadtest.load_test_project.OpargoLoginPage</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.example.loadtest.OpargoLoginPage</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
@@ -265,11 +282,11 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">loginPage</span>
-                <span class="method-start">2687 ms</span>
+                <span class="method-start">2358 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">5104 ms</span>
+                <span class="method-start">58778 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

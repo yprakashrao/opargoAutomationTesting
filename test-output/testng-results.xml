@@ -2,27 +2,52 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-05-22T17:22:57 IST" name="Default suite" finished-at="2024-05-22T17:23:04 IST" duration-ms="7174">
+  <suite started-at="2024-05-22T23:07:28 IST" name="Default suite" finished-at="2024-05-22T23:08:29 IST" duration-ms="60852">
     <groups>
     </groups>
-    <test started-at="2024-05-22T17:22:57 IST" name="Default test" finished-at="2024-05-22T17:23:04 IST" duration-ms="7174">
-      <class name="com.example.loadtest.load_test_project.OpargoLoginPage">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.example.loadtest.load_test_project.OpargoLoginPage@117159c0]" started-at="2024-05-22T17:22:57 IST" name="setUp" finished-at="2024-05-22T17:23:00 IST" duration-ms="2685" status="PASS">
+    <test started-at="2024-05-22T23:07:28 IST" name="Default test" finished-at="2024-05-22T23:08:29 IST" duration-ms="60852">
+      <class name="com.example.loadtest.OpargoLoginPage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.example.loadtest.OpargoLoginPage@117159c0]" started-at="2024-05-22T23:07:28 IST" name="setUp" finished-at="2024-05-22T23:07:31 IST" duration-ms="2357" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="loginPage()[pri:0, instance:com.example.loadtest.load_test_project.OpargoLoginPage@117159c0]" started-at="2024-05-22T17:23:00 IST" name="loginPage" finished-at="2024-05-22T17:23:02 IST" duration-ms="2410" status="FAIL">
-          <exception class="java.lang.IllegalStateException">
+        <test-method signature="loginPage()[pri:0, instance:com.example.loadtest.OpargoLoginPage@117159c0]" started-at="2024-05-22T23:07:31 IST" name="loginPage" finished-at="2024-05-22T23:08:27 IST" duration-ms="56420" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
             <message>
-              <![CDATA[Cannot get a STRING value from a NUMERIC cell]]>
+              <![CDATA[element click intercepted: Element <input _ngcontent-hhd-c371="" type="text" matinput="" class="mat-autocomplete-trigger mat-input-element mat-form-field-autofill-control ng-tns-c142-6 ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-haspopup="listbox" id="mat-input-2" data-placeholder="Select referring provider" aria-invalid="false" aria-required="false"> is not clickable at point (682, 585). Other element would receive the click: <li _ngcontent-aju-c340="" class="ng-binding">...</li>
+  (Session info: chrome=126.0.6423.2)
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c372b95c9bc4cf569accb169132f1986, clickElement {id=f.CD70296C3B5F98A1BA3ED63A17D49882.d.AFBCAE50D243EE642EF6BC076BFC5060.e.81}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58624}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58624/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c372b95c9bc4cf569accb169132f1986)] -> id: mat-input-2]
+Session ID: c372b95c9bc4cf569accb169132f1986]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.IllegalStateException: Cannot get a STRING value from a NUMERIC cell
-at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:987)
-at org.apache.poi.xssf.usermodel.XSSFCell.getRichStringCellValue(XSSFCell.java:336)
-at org.apache.poi.xssf.usermodel.XSSFCell.getStringCellValue(XSSFCell.java:280)
-at com.example.loadtest.load_test_project.ExcelUtils.getRowData(ExcelUtils.java:29)
-at com.example.loadtest.load_test_project.OpargoLoginPage.loginPage(OpargoLoginPage.java:55)
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <input _ngcontent-hhd-c371="" type="text" matinput="" class="mat-autocomplete-trigger mat-input-element mat-form-field-autofill-control ng-tns-c142-6 ng-untouched ng-pristine ng-valid cdk-text-field-autofill-monitored" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-haspopup="listbox" id="mat-input-2" data-placeholder="Select referring provider" aria-invalid="false" aria-required="false"> is not clickable at point (682, 585). Other element would receive the click: <li _ngcontent-aju-c340="" class="ng-binding">...</li>
+  (Session info: chrome=126.0.6423.2)
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c372b95c9bc4cf569accb169132f1986, clickElement {id=f.CD70296C3B5F98A1BA3ED63A17D49882.d.AFBCAE50D243EE642EF6BC076BFC5060.e.81}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58624}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58624/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c372b95c9bc4cf569accb169132f1986)] -> id: mat-input-2]
+Session ID: c372b95c9bc4cf569accb169132f1986
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+at com.example.loadtest.OpargoLoginPage.loginPage(OpargoLoginPage.java:249)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -53,15 +78,15 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.IllegalStateException -->
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.loadtest.load_test_project.OpargoLoginPage@117159c0]" started-at="2024-05-22T17:23:02 IST" name="tearDown" finished-at="2024-05-22T17:23:04 IST" duration-ms="2004" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.loadtest.OpargoLoginPage@117159c0]" started-at="2024-05-22T23:08:27 IST" name="tearDown" finished-at="2024-05-22T23:08:29 IST" duration-ms="2006" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.example.loadtest.load_test_project.OpargoLoginPage -->
+      </class> <!-- com.example.loadtest.OpargoLoginPage -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
