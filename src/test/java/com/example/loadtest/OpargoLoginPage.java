@@ -1,22 +1,17 @@
 package com.example.loadtest;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Random;
-import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,21 +40,20 @@ public class OpargoLoginPage{
 	 	@Test
 	     public void loginPage() throws InterruptedException, IOException 
 	     {	
-	 		 long startTime = System.currentTimeMillis();
+	 	long startTime = System.currentTimeMillis();
 	 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+	 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
 	  
         driver.get("http://127.0.0.1:90/#/login");
-        ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.csv");
+        ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.xlsx");
         Map<String, String> data = excel.getRowData("Sheet1",2);
         System.out.println("Page Title is " + driver.getTitle());
         Assert.assertEquals("Opargo", driver.getTitle());
         WebElement usernameField = driver.findElement(By.name("username"));
-        usernameField.sendKeys("yp_co_admin");
+        usernameField.sendKeys("sireesha");
 
         WebElement passwordField = driver.findElement(By.name("password"));
-
-        passwordField.sendKeys("YPRssp78@");
+        passwordField.sendKeys("DocUser$444");
 //        driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src, 'recaptcha')]")));
 //        WebElement recaptchaCheckbox = wait.until(ExpectedConditions.elementToBeClickable(By.className("recaptcha-checkbox-checkmark")));
 //        js.executeScript("arguments[0].click();", recaptchaCheckbox);
@@ -205,7 +199,8 @@ public class OpargoLoginPage{
 
         
         WebElement insuranceIdField = driver.findElement(By.name("secondaryInsuranceID"));
-        insuranceIdField.sendKeys(data.get("secondaryInsuranceID"));
+        insuranceIdField.sendKeys(data.get("secondaryInsuranceID"))
+        ;
         WebElement groupNumberField = driver.findElement(By.name("secondaryInsuranceGroupNumber"));
         groupNumberField.sendKeys(data.get("secondaryInsuranceGroupNumber"));
         Thread.sleep(50);
@@ -228,49 +223,31 @@ public class OpargoLoginPage{
         System.out.println("Specific date button for the second date picker found.");
         js.executeScript("arguments[0].click();", dateButton1);
         
-        
-        WebElement phoneField1 = driver.findElement(By.xpath("//input[@name='secondaryInsurancePhone']"));
+        WebElement phoneField1 = driver.findElement(By.name("secondaryInsurancePhone"));
         phoneField1.sendKeys(data.get("secondaryInsurancePhone"));
         System.out.println("Successfully entered secondary phone");
         
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,3000)");
+        
         Thread.sleep(1000);
         WebElement dropdownElement = driver.findElement(By.name("preferredProvider"));
+        
         Select dropdown = new Select(dropdownElement);
-        dropdown.selectByValue("2955");
+        dropdown.selectByValue("2915");
         Thread.sleep(3000);
         
-//		  Locate the input field and click to activate the autocomplete
-//        System.out.println("Waiting for the input field...");
-//        WebElement inputField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mat-input-2")));
-//        System.out.println("Input field found.");
-//        inputField.sendKeys("ADAMS, DAVID");
 
         WebElement inputElement = driver.findElement(By.id("mat-input-2"));
         inputElement.click();
 
-        // Wait for the autocomplete panel to be visible
         WebElement autocompletePanel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mat-autocomplete-panel")));
-
-        // Initialize JavaScript Executor
-
-        // Variables to store options and their count
         List<WebElement> options;
         int previousSize = 0;
-
-        // Continuously scroll in small steps and check for new options
         while (true) {
-            // Scroll down the panel incrementally
-            js.executeScript("arguments[0].scrollTop += arguments[0].offsetHeight / 2;", autocompletePanel);
-
-            // Wait for new options to load (adjust the wait time as needed)
+            js.executeScript("arguments[0].scrollTop += arguments[0].offsetHeight;", autocompletePanel);
             Thread.sleep(500);  // Reduce wait time for faster loading checks
-
-            // Retrieve the updated list of options
             options = driver.findElements(By.cssSelector(".mat-option-text"));
-
-            // Check if the size of the options list has changed
             if (options.size() == previousSize) {
-                // If the size hasn't changed, assume all options are loaded
                 break;
             }
 
@@ -293,20 +270,12 @@ public class OpargoLoginPage{
 
         // Optionally, perform further actions after selection
 
-        
+
         WebElement referral_source = driver.findElement(By.name("referralSource"));
         Select referralSource_dropdown = new Select(referral_source);
         referralSource_dropdown.selectByVisibleText("Billboard");
 
 
-        // Verify the selected value
-//        String selectedValue = (String) js.executeScript("return arguments[0].value;", selectElement);
-//        System.out.println("Selected value: " + selectedValue);
-        
-//        WebElement AppoinmentypeselectElement = wait1.until(ExpectedConditions.presenceOfElementLocated(By.name("officevisit")));
-//        WebElement Appoinmentypeoption = AppoinmentypeselectElement.findElement(By.xpath("//option[text()=' New Patient ']"));
-//        js.executeScript("arguments[0].value = 1: Object;", AppoinmentypeselectElement);
-//        js.executeScript("arguments[0].dispatchEvent(new Event('change'));", AppoinmentypeselectElement);
         WebElement officevisit_dropdownElement = driver.findElement(By.name("officevisit"));
         Select officevisit_dropdown = new Select(officevisit_dropdownElement);
         officevisit_dropdown.selectByVisibleText("Acute Visit");
@@ -318,13 +287,6 @@ public class OpargoLoginPage{
         System.out.println("Second date picker toggle button found.");
         js.executeScript("arguments[0].click();", thirddatePickerToggle);
 
-//        // Wait for and click the next month button for the second date picker
-//        System.out.println("Waiting for the next month button for the second date picker...");
-//        WebElement thirdMonthButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.className("mat-calendar-next-button")));
-//        System.out.println("Next month button for the second date picker found.");
-//        js.executeScript("arguments[0].click();", thirdMonthButton1);
-
-        // Wait for and click the specific date button for the second date picker
         System.out.println("Waiting for the specific date button (June 28, 2024)...");
         WebElement thirddateButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@aria-label='May 1, 2024']")));
         System.out.println("Specific date button for the second date picker found.");
@@ -346,25 +308,32 @@ public class OpargoLoginPage{
         long endTime = System.currentTimeMillis();
         long executionTime = endTime - startTime;
         System.out.println("Execution time: " + executionTime + " milliseconds");
-//        Thread.sleep(150000);
+        
+        Thread.sleep(30000);
+        
         try {
-            // Wait until the buttons are visible and clickable
-        	List<WebElement> scheduleButtons = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
-        		    By.cssSelector("input[type='submit'][value='Schedule'].btn.primary-btn-sm.primary-btn.dmWarning.ng-star-inserted")
-        		));
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".row.bestfit-slot.mb5.ng-star-inserted")));
+            List<WebElement> elements = driver.findElements(By.cssSelector(".row.bestfit-slot.mb5.ng-star-inserted"));
+            System.out.println("list of elements."+elements);
+            for (WebElement element : elements) {
+            	   // Wait for the name element to be visible and get the text content using JavaScript
+                WebElement nameElement = wait.until(ExpectedConditions.visibilityOf(element.findElement(By.cssSelector(".col-md-3.marspace"))));
+                String name = (String) js.executeScript("return arguments[0].textContent.trim();", nameElement);
 
-            System.out.println("Specific schedule button for the scheduling the appointment."+scheduleButtons);
-            // Click the first button in the list
-            if (!scheduleButtons.isEmpty()) {
-                scheduleButtons.get(0).click();
-                System.out.println("Clicked the first 'Schedule' button successfully.");
-            } else {
-                throw new NoSuchElementException("No 'Schedule' buttons found");
+                // Wait for the time element to be visible and get the text content using JavaScript
+                WebElement timeElement = wait.until(ExpectedConditions.visibilityOf(element.findElement(By.cssSelector(".col-md-2.marspace"))));
+                String time = (String) js.executeScript("return arguments[0].textContent.trim();", timeElement);
+
+                System.out.println("Name: " + name);
+                System.out.println("Time: " + time);
+//                System.out.println("Location: " + location);
+                WebElement scheduleButton = wait.until(ExpectedConditions.elementToBeClickable(element.findElement(By.cssSelector("input[value='Schedule']"))));
+                js.executeScript("arguments[0].click();", scheduleButton);
+                    break; // Exit the loop once the desired element is found and clicked
+//                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-// driver.quit();
+
         }
         
         

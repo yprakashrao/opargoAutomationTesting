@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.example.loadtest.OpargoLoginPage">
+      <class name="com.example.loadtest.ExistingPatient">
         <methods>
-          <include name="setUp"/>
-          <include name="tearDown"/>
           <include name="loginPage"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.example.loadtest.OpargoLoginPage -->
+      </class> <!-- com.example.loadtest.ExistingPatient -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

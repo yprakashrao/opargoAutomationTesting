@@ -21,7 +21,7 @@ public class ExcelUtils {
 	    public Map<String, String> getRowData(String sheetName, int rowIndex) {
 	        Sheet sheet = workbook.getSheet(sheetName);
 	        Row row = sheet.getRow(rowIndex);
-	        Map<String, String> rowData = new HashMap<>();
+	        Map<String, String> rowData = new HashMap<String, String>();
 
 	        for (int i = 0; i < row.getLastCellNum(); i++) {
 	            Cell cell = row.getCell(i);
