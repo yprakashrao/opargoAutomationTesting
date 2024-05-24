@@ -12,7 +12,7 @@ public class PerformanceListener extends TestListenerAdapter {
     @Override
     public void onTestSuccess(ITestResult tr) {
         long durationMillis = tr.getEndMillis() - tr.getStartMillis();
-        logger.info("Test Method: {}, Duration: {}ms", tr.getName(), durationMillis);
+        logger.info("Test Method: {}, Duration: {}ms", tr.getName(), durationMillis," PASSED");
         System.out.println("Test Method: " + tr.getName() + ", Duration: " + durationMillis + "ms");
     }
 

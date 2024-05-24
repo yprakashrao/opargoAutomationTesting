@@ -5,6 +5,7 @@ import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,13 +23,14 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.sikuli.script.Screen;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.openqa.selenium.Point;
 
-
+@Listeners(PerformanceListener.class)
 public class ExistingPatient {
     
 	private static final Logger logger = LoggerFactory.getLogger(ExistingPatient.class);
@@ -40,14 +42,15 @@ public class ExistingPatient {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
-        logger.info("ChromeDriver initialized successfully.");
+        logger.info("ChromeDriver initialized successfully The Existing Patient Application Flow.");
     }
     
     @Test
     public void loginPage() throws InterruptedException, IOException, FindFailed, AWTException {
+    	
         long startTime = System.currentTimeMillis();
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
 
         driver.get("http://127.0.0.1:90/#/login");
         ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.xlsx");
@@ -82,13 +85,14 @@ public class ExistingPatient {
         logger.info("Clicked select button for patient Kkk Kumar.");
 
 //        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        js.executeScript("scroll(0, 250)");
+        js.executeScript("scroll(0, 350)");
 //        WebElement dropdownElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='preferredProvider']")));
          wait.until(ExpectedConditions.presenceOfElementLocated(By.name("preferredProvider")));
          wait.until(ExpectedConditions.elementToBeClickable(By.name("preferredProvider")));
         WebElement dropdownElement = driver.findElement(By.name("preferredProvider"));
         Thread.sleep(1000);
         Select dropdown = new Select(dropdownElement);
+        Thread.sleep(1000);
 //        dropdown.selectByVisibleText("Cardiologist, Thomas");
         dropdown.selectByValue("2915");
         logger.debug("Preferred provider selected.");
@@ -100,7 +104,9 @@ public class ExistingPatient {
 
         WebElement officevisit_dropdownElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("select[name='officevisit']")));
         Select officevisit_dropdown = new Select(officevisit_dropdownElement);
+        Thread.sleep(1000);
         officevisit_dropdown.selectByIndex(4);
+        Thread.sleep(1000);
         logger.debug("Office visit time selected.");
 
         WebElement thirddatePickerToggle = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@aria-label='Open calendar'])")));
@@ -125,35 +131,61 @@ public class ExistingPatient {
         textareaElement.sendKeys(data.get("notes"));
         logger.debug("Notes entered.");
 
+        Thread.sleep(3000); 
+        
         WebElement findFirstAvailableButton = wait.until(
                 ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='button'][value='Find First Available'].primary-btn"))
             );
         System.out.println(findFirstAvailableButton);
+        Thread.sleep(2000);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", findFirstAvailableButton);
-        Thread.sleep(1000);
-        int windowX = driver.manage().window().getPosition().x;
-        int windowY = driver.manage().window().getPosition().y;
-
-        // Get the location and size of the target element relative to the browser window
-        int elementX = findFirstAvailableButton.getLocation().getX() + windowX;
-        int elementY = findFirstAvailableButton.getLocation().getY() + windowY;
-        int elementWidth = findFirstAvailableButton.getSize().getWidth();
-        int elementHeight = findFirstAvailableButton.getSize().getHeight();
-        // Create a Robot instance
-        Thread.sleep(100);
-        Robot robot = new Robot();
-        Thread.sleep(100);
-        // Move the mouse cursor to the center of the target element
-        int centerX = elementX + (elementWidth / 2);
-        int centerY = elementY + (elementHeight / 2);
-        robot.mouseMove(centerX, centerY);
-
-        // Simulate a mouse click
-        robot.mousePress(InputEvent.BUTTON1_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_MASK);
-        logger.info("Clicked 'Find First Available' button.");
-        Thread.sleep(100);
+        Thread.sleep(2000);
+        findFirstAvailableButton.click();
+        logger.debug("First click of findFirstAvailableButton completed");
+        Thread.sleep(8000);
+        findFirstAvailableButton.click();
+        logger.debug("Second click of findFirstAvailableButton completed");
         
+
+        Thread.sleep(60000); 
+        logger.info("Clicked 'Find First Available' button.");
+       
+        try {
+        String xpathExpression = "//div[contains(@class, 'row')]";
+        List<WebElement> elementsWithText = driver.findElements(
+                By.xpath(xpathExpression)
+            );
+        
+        js.executeScript("window.scrollTo(0, 0);");
+        System.out.println("Found the elements to be clicked and scrolled down"+elementsWithText.size());
+        for (WebElement elementWithText : elementsWithText) {
+            try {
+                // Scroll the specific element into view
+                js.executeScript("arguments[0].scrollIntoView(true);", elementWithText);
+                Thread.sleep(1000);  // Optional wait to ensure smooth scroll
+
+                // Find the "Schedule" button within the current element
+                WebElement scheduleButton = elementWithText.findElement(By.cssSelector("div.col-md-2.text-center input.primary-btn-sm.primary-btn.dmWarning"));
+                js.executeScript("window.scrollTo(0, 0);");
+                System.out.println("Waiting for Schedule button to be clicked...");
+                System.out.println(elementWithText);
+                System.out.println(scheduleButton);
+
+                // Click the "Schedule" button
+                scheduleButton.click();
+                System.out.println("Schedule button clicked");
+                
+                // Break the loop if you only want to click the first button found
+                break;
+            } catch (Exception e) {
+                System.out.println("Failed to find or click the Schedule button in one of the elements. Continuing to the next element...");
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+    	logger.debug("clicked on the scheduled button completed");
+    }
         
         long endTime = System.currentTimeMillis();
         long executionTime = endTime - startTime;
@@ -165,8 +197,9 @@ public class ExistingPatient {
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
         if (driver != null) {
-//            driver.quit();
+        	//driver.quit();
             logger.info("Browser closed and driver quit.");
         }
     }
+    
 }
