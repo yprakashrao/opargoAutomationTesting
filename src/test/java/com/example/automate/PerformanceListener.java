@@ -22,5 +22,4 @@ public class PerformanceListener extends TestListenerAdapter {
         System.out.println("Test Method FAILED: " + tr.getName() + " FAILED");
     }
 
-    // Implement other listener methods as needed
 }

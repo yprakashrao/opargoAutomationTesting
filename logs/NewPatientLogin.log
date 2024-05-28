@@ -1,5 +1,21 @@
-2024-05-27 15:02:27.558 [main] INFO  com.example.automate.NewPatientLogin - Excel data loaded successfully.
-2024-05-27 15:02:27.558 [main] INFO  com.example.automate.NewPatientLogin - Navigating to login page.
-2024-05-27 15:02:29.098 [main] INFO  com.example.automate.NewPatientLogin - Page title verified: Opargo
-2024-05-27 15:02:29.971 [main] INFO  com.example.automate.NewPatientLogin - Valid login attempted.
-2024-05-27 15:02:42.448 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 14:28:18.650 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 14:29:40.254 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 14:36:10.549 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 14:37:38.713 [main] INFO  com.example.automate.NewPatientLogin - Login button hover color verified.
+2024-05-28 14:38:07.132 [main] ERROR com.example.automate.NewPatientLogin - Error: Incorrect URL after clicking 'Take a Tour'. Expected: https://veradigm.com/predictive-scheduler/#about, but got: https://veradigm.com/predictive-scheduler/
+2024-05-28 14:38:09.255 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 14:38:37.464 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 14:40:53.697 [main] ERROR com.example.automate.NewPatientLogin - Error: Error: Login was not successful, URL did not change to the home page. expected [http://127.0.0.1:90/#/home] but found [http://127.0.0.1:90/#/login]
+2024-05-28 19:07:59.710 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 19:31:35.776 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 19:31:36.570 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 20:00:38.901 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-05-28 20:05:58.043 [main] ERROR com.example.automate.NewPatientLogin - Error: Login button color does not match. Expected: rgba(51, 188, 89, 1), but found: rgba(47, 175, 83, 1)
+2024-05-28 20:06:34.642 [main] ERROR com.example.automate.NewPatientLogin - Error: Error: Login was not successful, URL did not change to the home page. expected [http://127.0.0.1:90/#/home] but found [http://127.0.0.1:90/#/login]
+2024-05-28 20:27:58.154 [main] ERROR com.example.automate.NewPatientLogin - Error: Login button color does not match. Expected: rgba(51, 188, 89, 1), but found: rgba(47, 175, 83, 1)
+2024-05-28 20:28:53.067 [main] INFO  com.example.automate.NewPatientLogin - Entered patient last name.
+2024-05-28 20:28:53.162 [main] INFO  com.example.automate.NewPatientLogin - Entered patient first name.
+2024-05-28 20:28:53.265 [main] INFO  com.example.automate.NewPatientLogin - Entered patient middle name.
+2024-05-28 20:28:53.329 [main] INFO  com.example.automate.NewPatientLogin - Entered patient birth month.
+2024-05-28 20:28:53.379 [main] INFO  com.example.automate.NewPatientLogin - Entered patient birth day.
+2024-05-28 20:28:53.436 [main] INFO  com.example.automate.NewPatientLogin - Entered patient birth year.

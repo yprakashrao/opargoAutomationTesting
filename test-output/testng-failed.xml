@@ -6,8 +6,8 @@
       <class name="com.example.automate.NewPatientLogin">
         <methods>
           <include name="tearDown"/>
-          <include name="loginPage"/>
           <include name="setUp"/>
+          <include name="loginPage"/>
         </methods>
       </class> <!-- com.example.automate.NewPatientLogin -->
     </classes>
