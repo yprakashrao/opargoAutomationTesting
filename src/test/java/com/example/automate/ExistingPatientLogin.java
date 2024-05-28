@@ -1,4 +1,4 @@
-package com.example.loadtest;
+package com.example.automate;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -31,9 +31,9 @@ import org.sikuli.script.Pattern;
 import org.openqa.selenium.Point;
 
 @Listeners(PerformanceListener.class)
-public class ExistingPatient {
+public class ExistingPatientLogin {
     
-	private static final Logger logger = LoggerFactory.getLogger(ExistingPatient.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExistingPatientLogin.class);
     public WebDriver driver;
     
     @BeforeMethod
@@ -51,17 +51,19 @@ public class ExistingPatient {
         long startTime = System.currentTimeMillis();
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
-
+        
         driver.get("http://127.0.0.1:90/#/login");
+        
         ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.xlsx");
         Map<String, String> data = excel.getRowData("Sheet1", 2);
+        
         logger.info("Page Title is {}", driver.getTitle());
         Assert.assertEquals("Opargo", driver.getTitle());
-
+        
         WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
         usernameField.sendKeys("sireesha");
         logger.debug("Username entered.");
-
+        
         WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
         passwordField.sendKeys("DocUser$444");
         logger.debug("Password entered.");
@@ -69,12 +71,12 @@ public class ExistingPatient {
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".mb5.primary-btn")));
         loginButton.click();
         logger.info("User logged in successfully.");
-
+        
         WebElement lastNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientLastName")));
         lastNameField.clear();
         lastNameField.sendKeys("kumar");
         logger.debug("Patient last name entered.");
-
+        
         Thread.sleep(10000);
         WebElement patientLookupButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='submit'][value='Patient Lookup'].primary-btn")));
         patientLookupButton.click();
@@ -83,12 +85,12 @@ public class ExistingPatient {
         WebElement selectButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[contains(., 'Kkk Kumar')]//button[text()='Select']")));
         selectButton.click();
         logger.info("Clicked select button for patient Kkk Kumar.");
-
-//        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        
+//      js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         js.executeScript("scroll(0, 350)");
-//        WebElement dropdownElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='preferredProvider']")));
-         wait.until(ExpectedConditions.presenceOfElementLocated(By.name("preferredProvider")));
-         wait.until(ExpectedConditions.elementToBeClickable(By.name("preferredProvider")));
+//      WebElement dropdownElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='preferredProvider']")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.name("preferredProvider")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("preferredProvider")));
         WebElement dropdownElement = driver.findElement(By.name("preferredProvider"));
         Thread.sleep(1000);
         Select dropdown = new Select(dropdownElement);
@@ -131,21 +133,20 @@ public class ExistingPatient {
         textareaElement.sendKeys(data.get("notes"));
         logger.debug("Notes entered.");
 
-        Thread.sleep(3000); 
+        Thread.sleep(2000); 
         
         WebElement findFirstAvailableButton = wait.until(
                 ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='button'][value='Find First Available'].primary-btn"))
             );
         System.out.println(findFirstAvailableButton);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", findFirstAvailableButton);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         findFirstAvailableButton.click();
         logger.debug("First click of findFirstAvailableButton completed");
-        Thread.sleep(8000);
+        Thread.sleep(6000);
         findFirstAvailableButton.click();
         logger.debug("Second click of findFirstAvailableButton completed");
-        
 
         Thread.sleep(60000); 
         logger.info("Clicked 'Find First Available' button.");
@@ -170,8 +171,6 @@ public class ExistingPatient {
                 System.out.println("Waiting for Schedule button to be clicked...");
                 System.out.println(elementWithText);
                 System.out.println(scheduleButton);
-
-                // Click the "Schedule" button
                 scheduleButton.click();
                 System.out.println("Schedule button clicked");
                 
@@ -197,7 +196,7 @@ public class ExistingPatient {
     public void tearDown() throws InterruptedException {
         Thread.sleep(2000);
         if (driver != null) {
-        	//driver.quit();
+//        	driver.quit();
             logger.info("Browser closed and driver quit.");
         }
     }

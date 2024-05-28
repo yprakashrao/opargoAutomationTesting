@@ -1,0 +1,5 @@
+2024-05-27 15:02:27.558 [main] INFO  com.example.automate.NewPatientLogin - Excel data loaded successfully.
+2024-05-27 15:02:27.558 [main] INFO  com.example.automate.NewPatientLogin - Navigating to login page.
+2024-05-27 15:02:29.098 [main] INFO  com.example.automate.NewPatientLogin - Page title verified: Opargo
+2024-05-27 15:02:29.971 [main] INFO  com.example.automate.NewPatientLogin - Valid login attempted.
+2024-05-27 15:02:42.448 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.

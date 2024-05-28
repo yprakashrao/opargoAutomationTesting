@@ -1,4 +1,4 @@
-package com.example.loadtest;
+package com.example.automate;
 
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
@@ -12,15 +12,14 @@ public class PerformanceListener extends TestListenerAdapter {
     @Override
     public void onTestSuccess(ITestResult tr) {
         long durationMillis = tr.getEndMillis() - tr.getStartMillis();
-        logger.info("Test Method: {}, Duration: {}ms", tr.getName(), durationMillis," PASSED");
+        logger.info("Test Method PASSED: {}, Duration: {}ms", tr.getName(), durationMillis);
         System.out.println("Test Method: " + tr.getName() + ", Duration: " + durationMillis + "ms");
     }
 
     @Override
     public void onTestFailure(ITestResult tr) {
         logger.error("Test Method: {} FAILED", tr.getName());
-        System.out.println("Test Method: " + tr.getName() + " FAILED");
-        // Implement custom logic to handle test failure, such as capturing screenshots or logging additional information
+        System.out.println("Test Method FAILED: " + tr.getName() + " FAILED");
     }
 
     // Implement other listener methods as needed

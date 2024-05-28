@@ -1,4 +1,4 @@
-package com.example.loadtest;
+package com.example.automate;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

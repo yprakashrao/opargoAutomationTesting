@@ -1,0 +1,11 @@
+2024-05-27 14:52:41.559 [main] INFO  c.e.automate.ExistingPatientLogin - ChromeDriver initialized successfully The Existing Patient Application Flow.
+2024-05-27 14:52:46.259 [main] INFO  c.e.automate.ExistingPatientLogin - Page Title is Opargo
+2024-05-27 14:52:46.561 [main] DEBUG c.e.automate.ExistingPatientLogin - Username entered.
+2024-05-27 14:52:46.803 [main] DEBUG c.e.automate.ExistingPatientLogin - Password entered.
+2024-05-27 14:52:47.149 [main] INFO  c.e.automate.ExistingPatientLogin - User logged in successfully.
+2024-05-27 14:53:14.129 [main] DEBUG c.e.automate.ExistingPatientLogin - Patient last name entered.
+2024-05-27 14:53:24.286 [main] INFO  c.e.automate.ExistingPatientLogin - Clicked patient lookup button.
+2024-05-27 14:53:41.529 [main] INFO  c.e.automate.ExistingPatientLogin - Clicked select button for patient Kkk Kumar.
+2024-05-27 14:53:47.037 [main] DEBUG c.e.automate.ExistingPatientLogin - Preferred provider selected.
+2024-05-27 14:53:51.213 [main] DEBUG c.e.automate.ExistingPatientLogin - Referral source selected.
+2024-05-27 14:53:54.668 [main] INFO  c.e.automate.ExistingPatientLogin - Browser closed and driver quit.

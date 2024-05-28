@@ -1,4 +1,4 @@
-package com.example.loadtest;
+package com.example.automate;
 
 import org.testng.annotations.Test;
 import org.slf4j.Logger;

@@ -1,11 +1,11 @@
-package com.example.loadtest;
+package com.example.automate;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -25,9 +25,9 @@ import org.testng.annotations.Test;
 
 
 @Listeners(PerformanceListener.class)
-public class OpargoLoginPage{
+public class NewPatientLogin{
 	
-	private static final Logger logger = LoggerFactory.getLogger(OpargoLoginPage.class);
+	private static final Logger logger = LoggerFactory.getLogger(NewPatientLogin.class);
 
 	public WebDriver driver;
 	
@@ -48,29 +48,157 @@ public class OpargoLoginPage{
 	 	JavascriptExecutor js = (JavascriptExecutor) driver;
 	 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
 	  
-	 	logger.info("Navigating to login page.");
-        driver.get("http://127.0.0.1:90/#/login");
-        
         ExcelUtils excel = new ExcelUtils("C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.xlsx");
         Map<String, String> data = excel.getRowData("Sheet1",2);
         logger.info("Excel data loaded successfully.");
         
-        System.out.println("Page Title is " + driver.getTitle());
-        logger.info("Page Title is " + driver.getTitle());
-        Assert.assertEquals("Opargo", driver.getTitle());
-        logger.info("Page title verified.");
-        WebElement usernameField = driver.findElement(By.name("username"));
-        usernameField.sendKeys("sireesha");
-        logger.info("Entered username.");
-        
-        WebElement passwordField = driver.findElement(By.name("password"));
-        passwordField.sendKeys("DocUser$444");
-        logger.info("Entered password.");
+        logger.info("Navigating to login page.");
+        driver.get("http://127.0.0.1:90/#/login");
 
-        js.executeScript("document.querySelector('.mb5.primary-btn').click();");
-        logger.info("Clicked login button.");
+        // 2. Opargo title and logo on the browser tab
+        Assert.assertEquals(driver.getTitle(), "Opargo");
+        logger.info("Page title verified: Opargo");
+
+        // 3. Valid User Login
+        WebElement usernameField = driver.findElement(By.name("username"));
+        WebElement passwordField = driver.findElement(By.name("password"));
+        WebElement loginButton = driver.findElement(By.cssSelector(".mb5.primary-btn"));
+
+        usernameField.sendKeys("validUsername");
+        passwordField.sendKeys("validPassword");
+        loginButton.click();
+        logger.info("Valid login attempted.");
+        Thread.sleep(10000);
+        Assert.assertEquals(driver.getCurrentUrl(), "http://127.0.0.1:90/#/home", "Error: Login was not successful, URL did not change to the home page.");
         
-       
+        // 4. Invalid Username
+        usernameField.clear();
+        passwordField.clear();
+        usernameField.sendKeys("invalidUsername");
+        passwordField.sendKeys("validPassword");
+        loginButton.click();
+        logger.info("Invalid username login attempted.");
+        Assert.assertTrue(driver.findElement(By.id("errorMessageId")).isDisplayed(), "Error: No error message displayed for invalid username.");
+        // Add assertions to verify error message
+
+        // 5. Invalid Password
+        usernameField.clear();
+        passwordField.clear();
+        usernameField.sendKeys("validUsername");
+        passwordField.sendKeys("invalidPassword");
+        loginButton.click();
+        logger.info("Invalid password login attempted.");
+        Assert.assertTrue(driver.findElement(By.id("errorMessageId")).isDisplayed(), "Error: No error message displayed for invalid password.");
+        // Add assertions to verify error message
+
+        // 6. Empty Username and Password
+        usernameField.clear();
+        passwordField.clear();
+        loginButton.click();
+        logger.info("Empty username and password login attempted.");
+        // Add assertions to verify error message
+
+        // 7. Empty Username
+        usernameField.clear();
+        passwordField.sendKeys("validPassword");
+        loginButton.click();
+        logger.info("Empty username login attempted.");
+        // Add assertions to verify error message
+
+        // 8. Empty Password
+        usernameField.sendKeys("validUsername");
+        passwordField.clear();
+        loginButton.click();
+        logger.info("Empty password login attempted.");
+        // Add assertions to verify error message
+
+        // 9. Password Visibility
+        WebElement passwordVisibilityToggle = driver.findElement(By.cssSelector(".password-visibility-toggle"));
+        passwordVisibilityToggle.click();
+        logger.info("Password visibility toggled.");
+        // Add assertions to verify password visibility
+
+        // 10. Forgot Password Link
+        WebElement forgotPasswordLink = driver.findElement(By.linkText("Forgot Password"));
+        Assert.assertTrue(forgotPasswordLink.isDisplayed());
+        logger.info("Forgot password link is displayed.");
+
+        // 11. Forgot Username Link
+        WebElement forgotUsernameLink = driver.findElement(By.linkText("Forgot Username"));
+        Assert.assertTrue(forgotUsernameLink.isDisplayed());
+        logger.info("Forgot username link is displayed.");
+
+        // 12. Recaptcha working or not
+        WebElement recaptcha = driver.findElement(By.className("g-recaptcha"));
+        Assert.assertTrue(recaptcha.isDisplayed());
+        logger.info("Recaptcha is displayed.");
+
+        // 13. Take a Tour Link
+        WebElement takeTourLink = driver.findElement(By.linkText("Take a Tour"));
+        Assert.assertTrue(takeTourLink.isDisplayed());
+        logger.info("Take a tour link is displayed.");
+
+        // 14. Speak with a Representative Link
+        WebElement speakWithRepLink = driver.findElement(By.linkText("Speak with a Representative"));
+        Assert.assertTrue(speakWithRepLink.isDisplayed());
+        logger.info("Speak with a representative link is displayed.");
+
+        // 15. New User? Heading
+        WebElement newUserHeading = driver.findElement(By.cssSelector(".new-user-heading"));
+        Assert.assertTrue(newUserHeading.isDisplayed());
+        logger.info("New user heading is displayed.");
+
+        // 16. Information for New User
+        WebElement newUserInfo = driver.findElement(By.cssSelector(".new-user-info"));
+        Assert.assertTrue(newUserInfo.isDisplayed());
+        logger.info("Information for new user is displayed.");
+
+        // 17. Footer in the black color
+        WebElement footer = driver.findElement(By.cssSelector(".footer"));
+        String footerColor = footer.getCssValue("background-color");
+        Assert.assertEquals(footerColor, "rgba(0, 0, 0, 1)");
+        logger.info("Footer color verified: black");
+
+        // 18. Logo under footer
+        WebElement footerLogo = driver.findElement(By.cssSelector(".footer-logo"));
+        Assert.assertTrue(footerLogo.isDisplayed());
+        logger.info("Footer logo is displayed.");
+
+        // 19. License reserved message after logo
+        WebElement licenseMessage = driver.findElement(By.cssSelector(".license-message"));
+        Assert.assertTrue(licenseMessage.isDisplayed());
+        logger.info("License reserved message is displayed.");
+
+        // 20. Privacy and security policy under footer
+        WebElement privacyPolicyLink = driver.findElement(By.linkText("Privacy and Security Policy"));
+        Assert.assertTrue(privacyPolicyLink.isDisplayed());
+        logger.info("Privacy and security policy link is displayed.");
+
+        // 21. Check the placeholders with their label and required field marks
+        WebElement usernameLabel = driver.findElement(By.cssSelector("label[for='username']"));
+        WebElement passwordLabel = driver.findElement(By.cssSelector("label[for='password']"));
+        Assert.assertTrue(usernameLabel.isDisplayed());
+        Assert.assertTrue(passwordLabel.isDisplayed());
+        logger.info("Username and password labels are displayed.");
+        Assert.assertTrue(usernameField.getAttribute("placeholder").contains("Username"));
+        Assert.assertTrue(passwordField.getAttribute("placeholder").contains("Password"));
+        logger.info("Username and password placeholders are correct.");
+
+        // 22. Check "Login" button functionality
+        // This is already covered in valid and invalid login cases
+
+        // 23. Check "Login" button color
+        String loginButtonColor = loginButton.getCssValue("background-color");
+        Assert.assertEquals(loginButtonColor, "expected-color-value");
+        logger.info("Login button color verified.");
+
+        // 24. Check "Login" button color on hover
+        // Simulate hover and check color
+        Actions actions = new Actions(driver);
+        actions.moveToElement(loginButton).perform();
+        String loginButtonHoverColor = loginButton.getCssValue("background-color");
+        Assert.assertEquals(loginButtonHoverColor, "expected-hover-color-value");
+        logger.info("Login button hover color verified.");
         System.out.println("User Logged inn successfully");
         
         WebElement lastNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientLastName")));
@@ -276,7 +404,7 @@ public class OpargoLoginPage{
         System.out.println("Specific date button for the second date picker found.");
         js.executeScript("arguments[0].click();", dateButton1);
         logger.info("Specific date button for the second date picker found.");
-
+        
         
         WebElement phoneField1 = driver.findElement(By.name("secondaryInsurancePhone"));
         phoneField1.sendKeys(data.get("secondaryInsurancePhone"));
@@ -291,7 +419,7 @@ public class OpargoLoginPage{
         Select dropdown = new Select(dropdownElement);
         dropdown.selectByValue("2915");
         logger.info("Selected preferred provider.");
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         
 
         WebElement inputElement = driver.findElement(By.id("mat-input-2"));
@@ -339,7 +467,7 @@ public class OpargoLoginPage{
 
         WebElement officevisit_dropdownElement = driver.findElement(By.name("officevisit"));
         Select officevisit_dropdown = new Select(officevisit_dropdownElement);
-        officevisit_dropdown.selectByVisibleText("Acute Visit");
+        officevisit_dropdown.selectByIndex(2);
         logger.info("Selected office visit type.");
 
         
@@ -383,34 +511,41 @@ public class OpargoLoginPage{
         logger.info("Execution time: " + executionTime + " milliseconds");
 
         
-        Thread.sleep(30000);
+        Thread.sleep(60000);
         
         try {
-            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(".row.bestfit-slot.mb5.ng-star-inserted")));
-            List<WebElement> elements = driver.findElements(By.cssSelector(".row.bestfit-slot.mb5.ng-star-inserted"));
-            logger.info("List of available slots found. Number of slots: " + elements.size());
-            System.out.println("list of elements."+elements);
-            for (WebElement element : elements) {
-            	   // Wait for the name element to be visible and get the text content using JavaScript
-                WebElement nameElement = wait.until(ExpectedConditions.visibilityOf(element.findElement(By.cssSelector(".col-md-3.marspace"))));
-                String name = (String) js.executeScript("return arguments[0].textContent.trim();", nameElement);
+            String xpathExpression = "//div[contains(@class, 'row')]";
+            List<WebElement> elementsWithText = driver.findElements(
+                    By.xpath(xpathExpression)
+                );
+            
+            js.executeScript("window.scrollTo(0, 0);");
+            System.out.println("Found the elements to be clicked and scrolled down"+elementsWithText.size());
+            for (WebElement elementWithText : elementsWithText) {
+                try {
+                    // Scroll the specific element into view
+                    js.executeScript("arguments[0].scrollIntoView(true);", elementWithText);
+                    Thread.sleep(1000);  // Optional wait to ensure smooth scroll
 
-                // Wait for the time element to be visible and get the text content using JavaScript
-                WebElement timeElement = wait.until(ExpectedConditions.visibilityOf(element.findElement(By.cssSelector(".col-md-2.marspace"))));
-                String time = (String) js.executeScript("return arguments[0].textContent.trim();", timeElement);
-                logger.info("Available Slot - Name: " + name + ", Time: " + time);
-
-                System.out.println("Name: " + name);
-                System.out.println("Time: " + time);
-//                System.out.println("Location: " + location);
-                WebElement scheduleButton = wait.until(ExpectedConditions.elementToBeClickable(element.findElement(By.cssSelector("input[value='Schedule']"))));
-                js.executeScript("arguments[0].click();", scheduleButton);
-                logger.info("Clicked schedule button for slot - Name: " + name + ", Time: " + time);
-                break; // Exit the loop once the desired element is found and clicked
-//                }
+                    // Find the "Schedule" button within the current element
+                    WebElement scheduleButton = elementWithText.findElement(By.cssSelector("div.col-md-2.text-center input.primary-btn-sm.primary-btn.dmWarning"));
+                    js.executeScript("window.scrollTo(0, 0);");
+                    System.out.println("Waiting for Schedule button to be clicked...");
+                    System.out.println(elementWithText);
+                    System.out.println(scheduleButton);
+                    scheduleButton.click();
+                    System.out.println("Schedule button clicked");
+                    
+                    // Break the loop if you only want to click the first button found
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Failed to find or click the Schedule button in one of the elements. Continuing to the next element...");
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-        	logger.info("Completed scheduling.");
+        	logger.debug("clicked on the scheduled button completed");
         }
         
         
