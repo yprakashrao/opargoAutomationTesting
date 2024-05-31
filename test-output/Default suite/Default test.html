@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue May 28 20:00:29 IST 2024</td>
+<td>Started on:</td><td>Fri May 31 17:41:13 IST 2024</td>
 </tr>
-<tr><td>Total time:</td><td>9 seconds (9822 ms)</td>
+<tr><td>Total time:</td><td>118 seconds (118656 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,17 +76,16 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.example.automate.NewPatientLogin.loginPage()'><b>loginPage</b><br>Test class: com.example.automate.NewPatientLogin</td>
-<td><div><pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+<td title='com.example.automate.ExistingPatientLogin.loginPage()'><b>loginPage</b><br>Test class: com.example.automate.ExistingPatientLogin</td>
+<td><div><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (412, 1205)
   (Session info: chrome=126.0.6423.2)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
 Build info: version: &apos;4.21.0&apos;, revision: &apos;79ed462ef4&apos;
 System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [bfba67a08c25206dd20de10d1f9ee975, getElementText {id=f.AD69C312E6EAC5D8BC62E45B444CDDC7.d.4F0AEF7345A04ECD79C404CC815EDACA.e.28}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60030}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60030/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (bfba67a08c25206dd20de10d1f9ee975)] -&gt; css selector: .mb5.text-danger.ng-star-inserted]
-Session ID: bfba67a08c25206dd20de10d1f9ee975
+Command: [43a55a0e222008b884a3771dfbb7746f, clickElement {id=f.91319C8EBD09371A810B6D5B0FB54685.d.5BB526114F8FEE0EF1EA52B89C8DFE7A.e.187}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50535}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50535/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (43a55a0e222008b884a3771dfbb7746f)] -&gt; css selector: input[type=&apos;button&apos;][value=&apos;Find First Available&apos;].primary-btn]
+Session ID: 43a55a0e222008b884a3771dfbb7746f
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -99,8 +98,8 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
-	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:191)
-	at com.example.automate.NewPatientLogin.loginPage(NewPatientLogin.java:91)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.example.automate.ExistingPatientLogin.loginPage(ExistingPatientLogin.java:232)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -129,17 +128,16 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</pre></div><a href='#' onClick='toggleBox("stack-trace943501193", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace943501193'><pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+</pre></div><a href='#' onClick='toggleBox("stack-trace541713794", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace541713794'><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (412, 1205)
   (Session info: chrome=126.0.6423.2)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
 Build info: version: &apos;4.21.0&apos;, revision: &apos;79ed462ef4&apos;
 System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [bfba67a08c25206dd20de10d1f9ee975, getElementText {id=f.AD69C312E6EAC5D8BC62E45B444CDDC7.d.4F0AEF7345A04ECD79C404CC815EDACA.e.28}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60030}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60030/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (bfba67a08c25206dd20de10d1f9ee975)] -&gt; css selector: .mb5.text-danger.ng-star-inserted]
-Session ID: bfba67a08c25206dd20de10d1f9ee975
+Command: [43a55a0e222008b884a3771dfbb7746f, clickElement {id=f.91319C8EBD09371A810B6D5B0FB54685.d.5BB526114F8FEE0EF1EA52B89C8DFE7A.e.187}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50535}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50535/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (43a55a0e222008b884a3771dfbb7746f)] -&gt; css selector: input[type=&apos;button&apos;][value=&apos;Find First Available&apos;].primary-btn]
+Session ID: 43a55a0e222008b884a3771dfbb7746f
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -152,8 +150,8 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
-	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:191)
-	at com.example.automate.NewPatientLogin.loginPage(NewPatientLogin.java:91)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.example.automate.ExistingPatientLogin.loginPage(ExistingPatientLogin.java:232)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -183,8 +181,8 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 </pre></div></td>
-<td>5</td>
-<td>com.example.automate.NewPatientLogin@3cdf2c61</td></tr>
+<td>113</td>
+<td>com.example.automate.ExistingPatientLogin@32c4e8b2</td></tr>
 </table><p>
 </body>
 </html>

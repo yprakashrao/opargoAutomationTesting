@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\solve\AppData\Local\Temp\testng-eclipse--1819139067\testng-customsuite.xml</span>
+                    <span>C:\Users\solve\AppData\Local\Temp\testng-eclipse-1286897588\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.example.automate.NewPatientLogin" class="method navigator-link" hash-for-method="loginPage">loginPage</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.example.automate.ExistingPatientLogin" class="method navigator-link" hash-for-method="loginPage">loginPage</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,7 +121,7 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.example.automate.NewPatientLogin</span>
+              <span class="class-name">com.example.automate.ExistingPatientLogin</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -129,16 +129,15 @@
                   <a name="loginPage">
                   </a> <!-- loginPage -->
                   <span class="method-name">loginPage</span>
-                  <div class="stack-trace">org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element is not clickable at point (412, 1205)
   (Session info: chrome=126.0.6423.2)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
 Build info: version: &apos;4.21.0&apos;, revision: &apos;79ed462ef4&apos;
 System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [bfba67a08c25206dd20de10d1f9ee975, getElementText {id=f.AD69C312E6EAC5D8BC62E45B444CDDC7.d.4F0AEF7345A04ECD79C404CC815EDACA.e.28}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60030}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60030/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on windows (bfba67a08c25206dd20de10d1f9ee975)] -&gt; css selector: .mb5.text-danger.ng-star-inserted]
-Session ID: bfba67a08c25206dd20de10d1f9ee975
+Command: [43a55a0e222008b884a3771dfbb7746f, clickElement {id=f.91319C8EBD09371A810B6D5B0FB54685.d.5BB526114F8FEE0EF1EA52B89C8DFE7A.e.187}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50535}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50535/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (43a55a0e222008b884a3771dfbb7746f)] -&gt; css selector: input[type=&apos;button&apos;][value=&apos;Find First Available&apos;].primary-btn]
+Session ID: 43a55a0e222008b884a3771dfbb7746f
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -151,8 +150,8 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
 	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:223)
-	at org.openqa.selenium.remote.RemoteWebElement.getText(RemoteWebElement.java:191)
-	at com.example.automate.NewPatientLogin.loginPage(NewPatientLogin.java:91)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:76)
+	at com.example.automate.ExistingPatientLogin.loginPage(ExistingPatientLogin.java:232)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -190,7 +189,7 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\solve\AppData\Local\Temp\testng-eclipse--1819139067\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\solve\AppData\Local\Temp\testng-eclipse-1286897588\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -199,7 +198,7 @@ Session ID: bfba67a08c25206dd20de10d1f9ee975
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.example.automate.NewPatientLogin&quot;/&gt;
+      &lt;class name=&quot;com.example.automate.ExistingPatientLogin&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -242,13 +241,13 @@ data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'loginPage')
-data.setCell(0, 2, 'com.example.automate.NewPatientLogin')
-data.setCell(0, 3, 5325);
+data.setCell(0, 2, 'com.example.automate.ExistingPatientLogin')
+data.setCell(0, 3, 113800);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 5 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -274,7 +273,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">com.example.automate.NewPatientLogin</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">com.example.automate.ExistingPatientLogin</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
@@ -283,11 +282,11 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">loginPage</span>
-                <span class="method-start">2415 ms</span>
+                <span class="method-start">2734 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">7754 ms</span>
+                <span class="method-start">116542 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

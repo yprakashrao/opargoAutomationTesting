@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.example.automate.NewPatientLogin">
+      <class name="com.example.automate.ExistingPatientLogin">
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
           <include name="loginPage"/>
         </methods>
-      </class> <!-- com.example.automate.NewPatientLogin -->
+      </class> <!-- com.example.automate.ExistingPatientLogin -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

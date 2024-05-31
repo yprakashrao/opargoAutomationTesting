@@ -1,0 +1,4 @@
+2024-05-31 17:41:15.916 [main] INFO  c.e.automate.ExistingPatientLogin - ChromeDriver initialized successfully The Existing Patient Application Flow.
+2024-05-31 17:42:42.074 [main] ERROR c.e.automate.ExistingPatientLogin - Error: Expected Error is not visible for patient lookup button upon empty fields
+2024-05-31 17:43:11.740 [main] INFO  c.e.automate.ExistingPatientLogin - Browser closed and driver quit.
+
