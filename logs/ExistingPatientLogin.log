@@ -1,4 +1,55 @@
-2024-05-31 17:41:15.916 [main] INFO  c.e.automate.ExistingPatientLogin - ChromeDriver initialized successfully The Existing Patient Application Flow.
-2024-05-31 17:42:42.074 [main] ERROR c.e.automate.ExistingPatientLogin - Error: Expected Error is not visible for patient lookup button upon empty fields
-2024-05-31 17:43:11.740 [main] INFO  c.e.automate.ExistingPatientLogin - Browser closed and driver quit.
+ChromeDriver initialized successfully The Existing Patient Application Flow.
+Verified Opargo title and logo on the browser tab 													   - passed.
+Test 'Invalid Username' 																			   - passed.
+Test 'Invalid Password' 																			   - passed.
+Test 'Empty Username and Password' 																	- passed.
+Test 'Empty Password' 																				   - passed.
+Checked placeholders with their labels and required field marks 									   - passed.
+Checked 'Login' button color 																		   - passed.
+Verified 'Forgot Password Link' functionality 														   - passed.
+Verified 'Forgot Username Link' functionality														   - passed.
+Verified 'Take a Tour Link' functionality 															   - passed.
+Verified 'Speak with a Representative Link' functionality 											   - passed.
+Verified footer is in black color 																	   - passed.
+Verified logo under footer																			   - passed.
+Verified license reserved message after logo 														   - passed.
+Verified privacy and security policy under footer 													   - passed.
+Home url is verified																				   - passed
+Home url is verified																				   - passed
+Execution time: 231650 milliseconds
+Browser closed and driver quit.
+
+ChromeDriver initialized successfully The Existing Patient Application Flow.
+Verified Opargo title and logo on the browser tab 													   - passed.
+Test 'Invalid Username' 																			   - passed.
+Test 'Invalid Password' 																			   - passed.
+Test 'Empty Username and Password' 																	   - passed.
+Test 'Empty Password' 																				   - passed.
+Checked placeholders with their labels and required field marks 									   - passed.
+Checked 'Login' button color 																		   - passed.
+Verified 'Forgot Password Link' functionality 														   - passed.
+Verified 'Forgot Username Link' functionality														   - passed.
+Verified 'Take a Tour Link' functionality 															   - passed.
+Verified 'Speak with a Representative Link' functionality 											   - passed.
+Verified footer is in black color 																	   - passed.
+Verified logo under footer																			   - passed.
+Verified license reserved message after logo 														   - passed.
+Verified privacy and security policy under footer 													   - passed.
+Home url is verified																				   - passed
+Home url is verified																				   - passed
+Execution time: 213767 milliseconds
+Browser closed and driver quit.
+
+ChromeDriver initialized successfully The Existing Patient Application Flow.
+Verified Opargo title and logo on the browser tab 													   - passed.
+Test 'Invalid Username' 																			   - passed.
+ChromeDriver initialized successfully The Existing Patient Application Flow.
+Verified Opargo title and logo on the browser tab 													   - passed.
+Execution time: 1050 milliseconds
+Browser closed and driver quit.
+
+ChromeDriver initialized successfully The Existing Patient Application Flow.
+Verified Opargo title and logo on the browser tab 													   - passed.
+Execution time: 1247 milliseconds
+Browser closed and driver quit.
 

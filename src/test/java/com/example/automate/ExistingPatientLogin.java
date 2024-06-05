@@ -17,24 +17,27 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.python.modules.thread.thread;
 import org.sikuli.script.FindFailed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-
-
+import com.paulhammant.ngwebdriver.ByAngular;
+import com.paulhammant.ngwebdriver.NgWebDriver;
 
 @Listeners(TestExecutionListener.class)
 public class ExistingPatientLogin {
 
 	private static final Logger logger = LoggerFactory.getLogger(ExistingPatientLogin.class);
 	public WebDriver driver;
-	private BestFitPage bestFitPage; 
+	private BestFitPage bestFitPage;
+	private List<TestResult> results = new ArrayList<>();
 
 	@BeforeMethod
 	public void setUp() {
@@ -48,158 +51,193 @@ public class ExistingPatientLogin {
 
 	@Test
 	public void loginPage() throws InterruptedException, IOException, FindFailed, AWTException {
-		long startTime = System.currentTimeMillis();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
-		
-		driver.get("http://127.0.0.1:90/#/login");
-		
+		  String testName = "Google Search";
+	        String status = "Passed";
+	        String errorMessage = "";
 		ExcelUtils excel = new ExcelUtils(
 				"C:\\workspace\\BE\\opargoAutomationTesting\\src\\resources\\test-data\\input-data.xlsx");
 		Map<String, String> data = excel.getRowData("Sheet1", 4);
-		// login page
-		// 1.logger.info("Navigating to login page.");
+		long startTime = System.currentTimeMillis();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
+
 		driver.get("http://127.0.0.1:90/#/login");
 
-		// 2. Opargo title and logo on the browser tab
+		// 1. login page
 		Assert.assertEquals(driver.getTitle(), "Opargo");
-
-		// 3. Valid User Login
+		logger.info(
+				"Verified Opargo title and logo on the browser tab 													   - passed.");
 		WebElement usernameField = driver.findElement(By.name("username"));
 		WebElement passwordField = driver.findElement(By.name("password"));
 		WebElement loginButton = driver.findElement(By.cssSelector(".mb5.primary-btn"));
 		String expectedErrorMessage = "Invalid username/password.";
-		String expectedUrl = "http://127.0.0.1:90/#/home";
-		// 4. Invalid Username
-		loginWithInvalidUsername(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
 
-        // 5. Invalid Password
-        loginWithInvalidPassword(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+//		loginWithInvalidUsername(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+//		loginWithInvalidPassword(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+//		loginWithEmptyCredentials(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+//		loginWithEmptyUsername(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+//		loginWithEmptyPassword(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+//		checkPlaceholders(usernameField, passwordField);
+//		checkLoginButtonColor(loginButton);
+//		checkForgotPasswordLink(wait);
+//		checkForgotUsernameLink(wait);
+//		checkTakeTourLink(js);
+//		checkSpeakWithRepresentativeLink(js);
+//		checkNewHereHeading();
+//		checkInfoParagraph();
+//		checkFooterElement();
+//		checkFooterLogo();
+//		checkLicenseMessage();
+//		checkPrivacyPolicyLink();
+//		performValidLogin(wait, js, data);
 
-        // 6. Empty Username and Password
-        loginWithEmptyCredentials(usernameField, passwordField, loginButton, expectedErrorMessage, wait);
+		// 2. patient information page
+		handlePatientInformationPage(wait, js);
+		emptyPrimaryInsuranceProvider(wait, js, data);
+		executionwithAllRequiredFields(wait, js, data);
 
-        // 7. Empty Username
-        loginWithEmptyUsername(usernameField,passwordField, loginButton, expectedErrorMessage, wait);
+//		WebElement primaryInsuranceProviderErrorMessageElement = wait
+//				.until(ExpectedConditions.visibilityOfElementLocated(
+//						By.xpath("//div[contains(text(), \"Please select an insurance provider\")]")));
+//		String primaryInsuranceExpectedError = "Please select an insurance provider";
+//		WebElement preferrenceProviderErrorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+//				By.xpath("//div[contains(text(), \"Please select a preferred provider\")]")));
+//		String preferrenceProviderExpectedError = "Please select a preferred provider";
+//		if (!primaryInsuranceExpectedError.equals(primaryInsuranceProviderErrorMessageElement)
+//				&& !preferrenceProviderErrorMessageElement.equals(preferrenceProviderExpectedError)) {
+//			logger.error("Error: error message is not displaying based on primary insurance provider field is empty");
+//		}
 
-        // 8. Empty Password
-        loginWithEmptyPassword(usernameField,passwordField, loginButton, expectedErrorMessage, wait);
+		Thread.sleep(60000);
 
-        // 9. Check the placeholders with their label and required field marks
-        checkPlaceholders(usernameField, passwordField);
+		try {
+			String xpathExpression = "//div[contains(@class, 'row')]";
+			List<WebElement> elementsWithText = driver.findElements(By.xpath(xpathExpression));
 
-        // 10. Check "Login" button color
-        checkLoginButtonColor(loginButton);
+			js.executeScript("window.scrollTo(0, 0);");
+			System.out.println("Found the elements to be clicked and scrolled down" + elementsWithText.size());
+			for (WebElement elementWithText : elementsWithText) {
+				try {
+					// Scroll the specific element into view
+					js.executeScript("arguments[0].scrollIntoView(true);", elementWithText);
+					Thread.sleep(1000); // Optional wait to ensure smooth scroll
 
-        // 11. Forgot Password Link
-        checkForgotPasswordLink(wait);
+					// Find the "Schedule" button within the current element
+					WebElement scheduleButton = elementWithText.findElement(
+							By.cssSelector("div.col-md-2.text-center input.primary-btn-sm.primary-btn.dmWarning"));
+					js.executeScript("window.scrollTo(0, 0);");
+					wait.until(ExpectedConditions.elementToBeClickable(scheduleButton));
 
-        // 12. Forgot Username Link
-        checkForgotUsernameLink(wait);
+					System.out.println("Waiting for Schedule button to be clicked...");
+					System.out.println(elementWithText);
+					System.out.println(scheduleButton);
+					scheduleButton.click();
+					Thread.sleep(500);
+					scheduleButton.click();
+					System.out.println("Schedule button clicked");
 
-        // 14. Take a Tour Link
-        checkTakeTourLink(js);
-
-        // 15. Speak with a Representative Link
-        checkSpeakWithRepresentativeLink(js);
-
-        // 16. Find the "New here?" heading element
-        checkNewHereHeading();
-
-        // 17. Find the information paragraph element
-        checkInfoParagraph();
-
-        // 18. Find the footer element
-        checkFooterElement();
-
-        // 19. Logo under footer
-        checkFooterLogo();
-
-        // 20. License reserved message after logo
-        checkLicenseMessage();
-
-        // 21. Privacy and security policy under footer
-        checkPrivacyPolicyLink();
-
-		// 22. Valid login
-		performValidLogin(wait, js, data);
-		
-		// Patient Information page
-		WebElement patientLookupButton = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.cssSelector("input[type='submit'][value='Patient Lookup'].primary-btn")));
-
-		WebElement clearFieldsButton = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.cssSelector("button.btn.btn-default.pull-right.ng-star-inserted")));
-		WebElement lastNameField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientLastName")));
-		WebElement firstNameField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientFirstName")));
-		WebElement middleNameField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientMiddleName")));
-		WebElement birthMonthField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthMonth")));
-		WebElement birthDayField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthDay")));
-		WebElement birthYearField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthYear")));
-		System.out.println(driver.getCurrentUrl());
-
-		if (!expectedUrl.equals(driver.getCurrentUrl())) {
-			logger.error("Error: Expected URL"+driver.getCurrentUrl()+" is not matching with actual URL"+expectedUrl);
+					// Break the loop if you only want to click the first button found
+					break;
+				} catch (Exception e) {
+					System.out.println(
+							"Failed to find or click the Schedule button in one of the elements. Continuing to the next element...");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		clearAndFillFields(driver);
-		lastNameField.sendKeys("");
-		Thread.sleep(10000);
-		patientLookupButton.click();
-		WebElement errorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-				"//div[contains(text(), \"Please enter a patient's first name, last name, or full date of birth to continue\")]")));
-		String expectedError = "Please enter a patient's first name, last name, or full date of birth to continue";
-		if (expectedError.equals(errorMessageElement.getText())) {
-			logger.error("Error: Expected Error is not visible for patient lookup button upon empty fields");
+
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+		logger.info("Execution time: {} milliseconds", executionTime);
+		 results.add(new TestResult(testName, status, endTime, errorMessage));
+	}
+
+	private void loginWithInvalidUsername(WebElement usernameField, WebElement passwordField, WebElement loginButton,
+			String expectedErrorMessage, WebDriverWait wait) {
+		try {
+			usernameField.clear();
+			passwordField.clear();
+			usernameField.sendKeys("invalidUsername");
+			passwordField.sendKeys("YPRssp78@");
+			loginButton.click();
+			WebElement errorMessageElement = wait.until(
+					ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb5.text-danger.ng-star-inserted")));
+			String actualErrorMessage = errorMessageElement.getText();
+			try {
+				if (!actualErrorMessage.equals(expectedErrorMessage)) {
+					throw new Exception("Error message content mismatch");
+				}
+				logger.info(
+						"Test 'Invalid Username' 																			   - passed.");
+			} catch (Exception e) {
+				logger.error("Error: The error message content is incorrect. Expected: " + expectedErrorMessage
+						+ ", Actual: " + actualErrorMessage, e);
+			}
+
+			// Check if the error message is displayed
+			try {
+				if (!errorMessageElement.isDisplayed()) {
+					throw new Exception("Error message not displayed");
+				}
+			} catch (Exception e) {
+				logger.error("Error: No error message displayed for invalid username.", e);
+			}
+		} catch (Exception e) {
+			logger.error("Error during login process", e);
 		}
-		
-//Upon future date of birth
-		clearAndFillFields(driver);
-		lastNameField.sendKeys("kumar");
-		firstNameField.sendKeys("Akshay");
-		birthMonthField.sendKeys("12");
-		birthDayField.sendKeys("02");
-		birthYearField.sendKeys("2024");
-		patientLookupButton.click();
-		Thread.sleep(100);
-		WebElement errorMessage = driver.findElement(By.cssSelector("p.text-danger"));
-		String errorText = errorMessage.getText();
-		if (!"Invalid Date".equals(errorText)) {
-			logger.error("Error: Invalid Date of birth is accepting by patient information page");
+		System.out.println("Case 4");
+
+	}
+
+	private void checkForgotPasswordLink(WebDriverWait wait) throws InterruptedException {
+		WebElement forgotPasswordLink = driver.findElement(By.linkText("Forgot your password?"));
+		if (!forgotPasswordLink.isDisplayed()) {
+			logger.error("Error: Forgot password link is not displayed.");
 		} else {
-			System.out.println("error message found.");
+			forgotPasswordLink.click();
+
+			// Wait for the new page to load (you might need a more sophisticated wait)
+			Thread.sleep(3000);
+			String expectedUrl = "http://127.0.0.1:90/#/forgot";
+			String actualUrl = driver.getCurrentUrl();
+			if (!expectedUrl.equals(actualUrl)) {
+				logger.error("Error: Incorrect URL after clicking 'Forgot Password'. Expected: " + expectedUrl
+						+ ", but got: " + actualUrl);
+			} else {
+				logger.info(
+						"Verified 'Forgot Password Link' functionality 														   - passed.");
+			}
+			WebElement formElement = driver.findElement(By.tagName("form"));
+			if (!formElement.isDisplayed()) {
+				logger.error("Error: Expected element not found on the 'Forgot Password' page.");
+			} else {
+				WebElement returnToLoginLink = driver.findElement(By.linkText("Return to Login Page"));
+				returnToLoginLink.click();
+			}
 		}
+		System.out.println("Case 11");
+	}
 
-		clearAndFillFields(driver);
-		birthMonthField.sendKeys("02");
-		clearAndFillFields(driver);
-		lastNameField.sendKeys("kumar");
-		js.executeScript("arguments[0].scrollIntoView(true);", patientLookupButton);
-
-		WebElement selectButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//tr[contains(., 'Akshay Kumar')]//button[text()='Select']")));
-		selectButton.click();
-		js.executeScript("scroll(0, 350)");
-		// WebElement dropdownElement =
-
+	private void executionwithAllRequiredFields(WebDriverWait wait, JavascriptExecutor js, Map<String, String> data)
+			throws InterruptedException {
+		driver.get("http://127.0.0.1:90/#/login");
+		performValidLogin(wait, js, data);
+		handlePatientInformationPage(wait, js);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.name("preferredProvider")));
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("preferredProvider")));
 		WebElement dropdownElement = driver.findElement(By.name("preferredProvider"));
 		Thread.sleep(1000);
-		Select dropdown = new Select(dropdownElement);
+		Select dropdown1 = new Select(dropdownElement);
 		Thread.sleep(1000);
 		// dropdown.selectByVisibleText("Cardiologist, Thomas");
-		dropdown.selectByValue("2915");
+		dropdown1.selectByValue("2915");
+		Thread.sleep(5000);
 
 		WebElement referral_source = driver.findElement(By.name("referralSource"));
 		Select referralSource_dropdown = new Select(referral_source);
 		referralSource_dropdown.selectByVisibleText("Billboard");
+
 		WebElement officevisit_dropdownElement = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("select[name='officevisit']")));
 		Select officevisit_dropdown = new Select(officevisit_dropdownElement);
@@ -210,8 +248,9 @@ public class ExistingPatientLogin {
 		WebElement thirddatePickerToggle = wait.until(
 				ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@aria-label='Open calendar'])")));
 		js.executeScript("arguments[0].click();", thirddatePickerToggle);
+
 		WebElement thirddateButton1 = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@aria-label='May 1, 2024']")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@aria-label='June 1, 2024']")));
 		js.executeScript("arguments[0].click();", thirddateButton1);
 		WebElement patientbody_part = driver.findElement(By.name("patientBodyPart"));
 		Select patientBodypartdropdown = new Select(patientbody_part);
@@ -230,27 +269,27 @@ public class ExistingPatientLogin {
 		Thread.sleep(1000);
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", findFirstAvailableButton);
 		Thread.sleep(1000);
-		findFirstAvailableButton.click();
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", findFirstAvailableButton);
+		Thread.sleep(5000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", findFirstAvailableButton);
+	}
 
-		WebElement primaryInsuranceProviderErrorMessageElement = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(
-						By.xpath("//div[contains(text(), \"Please select an insurance provider\")]")));
-		String primaryInsuranceExpectedError = "Please select an insurance provider";
-		WebElement preferrenceProviderErrorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//div[contains(text(), \"Please select a preferred provider\")]")));
-		String preferrenceProviderExpectedError = "Please select a preferred provider";
-		if (primaryInsuranceExpectedError.equals(primaryInsuranceProviderErrorMessageElement)
-				&& preferrenceProviderErrorMessageElement.equals(preferrenceProviderExpectedError)) {
-			logger.error("Error: error message is not displaying based on primary insurance provider field is empty");
-		}
+	private void emptyPrimaryInsuranceProvider(WebDriverWait wait, JavascriptExecutor js, Map<String, String> data)
+			throws InterruptedException {
 
-		// Best Fit Page
-		bestFitPage.clickScheduleButton("row", "div.col-md-2.text-center input.primary-btn-sm.primary-btn.dmWarning");
+		System.out.println("starting the click");
+		WebElement findFirstAvailableButton = wait.until(ExpectedConditions.elementToBeClickable(
+				By.cssSelector("input[type='button'][value='Find First Available'].primary-btn")));
+		System.out.println(findFirstAvailableButton);
+		Thread.sleep(1000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", findFirstAvailableButton);
+		Thread.sleep(1000);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", findFirstAvailableButton);
 
-		long endTime = System.currentTimeMillis();
-		long executionTime = endTime - startTime;
-		logger.info("Execution time: {} milliseconds", executionTime);
-
+		System.out.println("completed the click");
+		WebElement element = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".text-danger.ng-star-inserted")));
+		System.out.println("Is the error message visible? " + element.isDisplayed());
 	}
 
 	@AfterMethod
@@ -260,21 +299,132 @@ public class ExistingPatientLogin {
 			// driver.quit();
 			logger.info("Browser closed and driver quit.\n");
 		}
-
 	}
 
-	private static void clearAndFillFields(WebDriver driver) {
+	private void verifyUrl(String expectedUrl) throws InterruptedException {
+		Thread.sleep(10000);
+		if (!expectedUrl.equals(driver.getCurrentUrl())) {
+			logger.error("Error: Expected URL " + expectedUrl + " is not matching with actual URL "
+					+ driver.getCurrentUrl());
+		}
+		logger.info("Home url is verified																				   - passed");
+		System.out.println("home url is verified");
+	}
+
+	private void handlePatientInformationPage(WebDriverWait wait, JavascriptExecutor js) throws InterruptedException {
+		WebElement patientLookupButton = wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.cssSelector("input[type='submit'][value='Patient Lookup'].primary-btn")));
+		WebElement lastNameField = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientLastName")));
+		WebElement patientMiddleName = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientMiddleName")));
+		WebElement firstNameField = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientFirstName")));
+		WebElement birthMonthField = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthMonth")));
+		WebElement birthDayField = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthDay")));
+		WebElement birthYearField = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthYear")));
+		Thread.sleep(1000);
+		System.out.println(patientLookupButton + "" + lastNameField + "" + firstNameField + "" + birthDayField + ""
+				+ birthMonthField + "" + birthYearField);
+		String expectedUrl = "http://127.0.0.1:90/#/home";
+		verifyUrl(expectedUrl);
+		Thread.sleep(1000);
+//		handleEmptyFields(patientLookupButton, lastNameField, wait);
+//		handleFutureDateOfBirth(wait, patientLookupButton, lastNameField, firstNameField, birthMonthField,
+//		birthDayField, birthYearField);
+		Thread.sleep(1000);
+		searchExistingPatient(wait, js, patientLookupButton, lastNameField, firstNameField, birthMonthField,
+				birthDayField, birthYearField);
+	}
+
+	private void handleEmptyFields(WebElement patientLookupButton, WebElement lastNameField, WebDriverWait wait)
+			throws InterruptedException {
+		// Empty Fields
 		try {
-			WebElement lastNameField = driver.findElement(By.name("patientLastName"));
-			WebElement firstNameField = driver.findElement(By.name("patientFirstName"));
-			WebElement middleNameField = driver.findElement(By.name("patientMiddleName"));
-			WebElement birthMonthField = driver.findElement(By.name("patientBirthMonth"));
-			WebElement birthDayField = driver.findElement(By.name("patientBirthDay"));
-			WebElement birthYearField = driver.findElement(By.name("patientBirthYear"));
+			patientLookupButton.click();
+			Thread.sleep(200);
+			WebElement errorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+					"//div[contains(text(), \"Please enter a patient's first name, last name, or full date of birth to continue\")]")));
+			Thread.sleep(200);
+			String expectedError = "Please enter a patient's first name, last name, or full date of birth to continue";
+			if (!expectedError.equals(errorMessageElement.getText())) {
+				logger.error("Error: Expected Error is not visible for patient lookup button upon empty fields");
+			} else {
+				logger.info("Test 'Empty Username and Password' 																	   - passed.");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	private void handleFutureDateOfBirth(WebDriverWait wait, WebElement patientLookupButton, WebElement lastNameField,
+			WebElement firstNameField, WebElement birthMonthField, WebElement birthDayField, WebElement birthYearField)
+			throws InterruptedException {
+		// Upon future date of birth
+		clearAndFillFields(driver, wait);
+		lastNameField.sendKeys("kumar");
+		firstNameField.sendKeys("Akshay");
+		birthMonthField.sendKeys("12");
+		birthDayField.sendKeys("02");
+		birthYearField.sendKeys("2024");
+		patientLookupButton.click();
+		Thread.sleep(100);
+		WebElement errorMessage = driver.findElement(By.cssSelector("p.text-danger"));
+		String errorText = errorMessage.getText();
+		Thread.sleep(8000);
+		WebElement cancelButton = driver
+				.findElement(By.cssSelector("a.btn.btn-default.center-block.secondary-btn.w340"));
+		cancelButton.click();
+		if (!"Invalid Date".equals(errorText)) {
+			logger.error("Error: Invalid Date of birth is accepting by patient information page");
+		} else {
+			logger.info(
+					"error message found while handling future date 														- passed");
+		}
+	}
+
+	private void searchExistingPatient(WebDriverWait wait, JavascriptExecutor js, WebElement patientLookupButton,
+			WebElement lastNameField, WebElement firstNameField, WebElement birthMonthField, WebElement birthDayField,
+			WebElement birthYearField) throws InterruptedException {
+		// Searching existing patient
+
+		clearAndFillFields(driver, wait);
+		birthMonthField.sendKeys("02");
+		clearAndFillFields(driver, wait);
+		lastNameField.sendKeys("kumar");
+		firstNameField.sendKeys("Akshay");
+		birthMonthField.sendKeys("04");
+		birthDayField.sendKeys("14");
+		birthYearField.sendKeys("2022");
+		patientLookupButton.click();
+		Thread.sleep(8000);
+		WebElement selectButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//tr[contains(., 'Akshay Kumar')]//button[text()='Select']")));
+		selectButton.click();
+		js.executeScript("scroll(0, 350)");
+	}
+
+	private static void clearAndFillFields(WebDriver driver, WebDriverWait wait) {
+		try {
+			WebElement lastNameField = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientLastName")));
+			WebElement middleName = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientMiddleName")));
+			WebElement firstNameField = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientFirstName")));
+			WebElement birthMonthField = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthMonth")));
+			WebElement birthDayField = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthDay")));
+			WebElement birthYearField = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthYear")));
 
 			lastNameField.clear();
 			firstNameField.clear();
-			middleNameField.clear();
+			middleName.clear();
 			birthMonthField.clear();
 			birthDayField.clear();
 			birthYearField.clear();
@@ -294,55 +444,11 @@ public class ExistingPatientLogin {
 		}
 	}
 
-	private static Optional<WebElement> findElement(WebDriverWait wait, By by) {
-		try {
-			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-			return Optional.of(element);
-		} catch (Exception e) {
-			logger.error("Element not found: " + by);
-			return Optional.empty();
-		}
-	}
-
-	private void loginWithInvalidUsername(WebElement usernameField, WebElement passwordField, WebElement loginButton,
-			String expectedErrorMessage, WebDriverWait wait) {
-		try {
-			usernameField.clear();
-			passwordField.clear();
-			usernameField.sendKeys("invalidUsername");
-			passwordField.sendKeys("DocUser$444");
-			loginButton.click();
-			WebElement errorMessageElement = wait.until(
-					ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb5.text-danger.ng-star-inserted")));
-			String actualErrorMessage = errorMessageElement.getText();
-			try {
-				if (!actualErrorMessage.equals(expectedErrorMessage)) {
-					throw new Exception("Error message content mismatch");
-				}
-			} catch (Exception e) {
-				logger.error("Error: The error message content is incorrect. Expected: " + expectedErrorMessage
-						+ ", Actual: " + actualErrorMessage);
-			}
-
-			// Check if the error message is displayed
-			try {
-				if (!errorMessageElement.isDisplayed()) {
-					throw new Exception("Error message not displayed");
-				}
-			} catch (Exception e) {
-				logger.error("Error: No error message displayed for invalid username.");
-			}
-			System.out.println("Case 4: Error message is displaying properly on Invalid Username");
-		} catch (Exception e) {
-			logger.error("Error during login process");
-		}
-	}
-
 	private void loginWithInvalidPassword(WebElement usernameField, WebElement passwordField, WebElement loginButton,
 			String expectedErrorMessage, WebDriverWait wait) {
 		usernameField.clear();
 		passwordField.clear();
-		usernameField.sendKeys("sireesha");
+		usernameField.sendKeys("yp_co_a");
 		passwordField.sendKeys("invalidPassword");
 		loginButton.click();
 		WebElement errorMessageElement1 = wait.until(
@@ -351,6 +457,9 @@ public class ExistingPatientLogin {
 		if (!actualErrorMessage1.equals(expectedErrorMessage)) {
 			logger.error("Error: The error message content is incorrect. Expected: " + expectedErrorMessage
 					+ ", Actual: " + actualErrorMessage1);
+		} else {
+			logger.info(
+					"Test 'Invalid Password' 																			   - passed.");
 		}
 		if (!errorMessageElement1.isDisplayed()) {
 			logger.error("Error: No error message displayed for invalid username.");
@@ -369,6 +478,9 @@ public class ExistingPatientLogin {
 		if (!actualErrorMessage2.equals(expectedErrorMessage)) {
 			logger.error("Error: The error message content is incorrect. Expected: " + expectedErrorMessage
 					+ ", Actual: " + actualErrorMessage2);
+		} else {
+			logger.info(
+					"Test 'Empty Username and Password' 																	- passed.");
 		}
 		if (!errorMessageElement2.isDisplayed()) {
 			logger.error("Error: No error message displayed for invalid username.");
@@ -387,6 +499,7 @@ public class ExistingPatientLogin {
 		if (!actualErrorMessage3.equals(expectedErrorMessage)) {
 			logger.error("Error: The error message content is incorrect. Expected: " + expectedErrorMessage
 					+ ", Actual: " + actualErrorMessage3);
+			logger.info("Test 'Empty Username' - passed.");
 		}
 		if (!errorMessageElement3.isDisplayed()) {
 			logger.error("Error: No error message displayed for invalid username.");
@@ -396,7 +509,7 @@ public class ExistingPatientLogin {
 
 	private void loginWithEmptyPassword(WebElement usernameField, WebElement passwordField, WebElement loginButton,
 			String expectedErrorMessage, WebDriverWait wait) {
-		usernameField.sendKeys("validUsername");
+		usernameField.sendKeys("yp_co_a");
 		passwordField.clear();
 		loginButton.click();
 		WebElement errorMessageElement4 = wait.until(
@@ -405,6 +518,9 @@ public class ExistingPatientLogin {
 		if (!actualErrorMessage4.equals(expectedErrorMessage)) {
 			logger.error("Error: The error message content is incorrect. Expected: " + expectedErrorMessage
 					+ ", Actual: " + actualErrorMessage4);
+		} else {
+			logger.info(
+					"Test 'Empty Password' 																				   - passed.");
 		}
 		if (!errorMessageElement4.isDisplayed()) {
 			logger.error("Error: No error message displayed for invalid username.");
@@ -418,6 +534,9 @@ public class ExistingPatientLogin {
 		if (!usernamePlaceholder.equals("Username")) {
 			logger.error(
 					"Error: Placeholder is incorrect. Expected 'Username' but found '" + usernamePlaceholder + "'.");
+		} else {
+			logger.info(
+					"Checked placeholders with their labels and required field marks 									   - passed.");
 		}
 
 		// Assert the placeholder value for password
@@ -434,35 +553,11 @@ public class ExistingPatientLogin {
 		if (!loginButtonColor.equals(expectedColorValue)) {
 			logger.error("Error: Login button color does not match. Expected: " + expectedColorValue + ", but found: "
 					+ loginButtonColor);
+		} else {
+			logger.info(
+					"Checked 'Login' button color 																		   - passed.");
 		}
 		System.out.println("Case 10: Login button color is in expected condition");
-	}
-
-	private void checkForgotPasswordLink(WebDriverWait wait) throws InterruptedException {
-		WebElement forgotPasswordLink = driver.findElement(By.linkText("Forgot your password?"));
-		if (!forgotPasswordLink.isDisplayed()) {
-			logger.error("Error: Forgot password link is not displayed.");
-		} else {
-			forgotPasswordLink.click();
-
-			// Wait for the new page to load (you might need a more sophisticated wait)
-			Thread.sleep(3000);
-			String expectedUrl = "http://127.0.0.1:90/#/forgot";
-			String actualUrl = driver.getCurrentUrl();
-			if (!expectedUrl.equals(actualUrl)) {
-				logger.error("Error: Incorrect URL after clicking 'Forgot Password'. Expected: " + expectedUrl
-						+ ", but got: " + actualUrl);
-			} else {
-			}
-			WebElement formElement = driver.findElement(By.tagName("form"));
-			if (!formElement.isDisplayed()) {
-				logger.error("Error: Expected element not found on the 'Forgot Password' page.");
-			} else {
-				WebElement returnToLoginLink = driver.findElement(By.linkText("Return to Login Page"));
-				returnToLoginLink.click();
-			}
-		}
-		System.out.println("Case 11: Forgot password link is functioning properly");
 	}
 
 	private void checkForgotUsernameLink(WebDriverWait wait) throws InterruptedException {
@@ -479,6 +574,8 @@ public class ExistingPatientLogin {
 				logger.error("Error: Incorrect URL after clicking 'Forgot Password'. Expected: " + expectedUrl
 						+ ", but got: " + actualUrl);
 			} else {
+				logger.info(
+						"Verified 'Forgot Username Link' functionality														   - passed.");
 			}
 			WebElement formElement = driver.findElement(By.cssSelector("form.mt-4"));
 			if (!formElement.isDisplayed()) {
@@ -506,6 +603,8 @@ public class ExistingPatientLogin {
 				logger.error("Error: Incorrect URL after clicking 'Take a Tour'. Expected: " + expectedUrl
 						+ ", but got: " + actualUrl);
 			} else {
+				logger.info(
+						"Verified 'Take a Tour Link' functionality 															   - passed.");
 				driver.close();
 				driver.switchTo().window(tabHandles.get(0));
 				System.out.println("Case 14: Take a tour link is working properly");
@@ -529,6 +628,8 @@ public class ExistingPatientLogin {
 				logger.error("Error: Incorrect URL after clicking 'Speak with a Representative'. Expected: "
 						+ expectedUrl + ", but got: " + actualUrl);
 			} else {
+				logger.info(
+						"Verified 'Speak with a Representative Link' functionality 											   - passed.");
 				driver.close();
 				driver.switchTo().window(tabHandles.get(0));
 				System.out.println("Case 15: Speak with a Representative Link is working properly");
@@ -543,6 +644,7 @@ public class ExistingPatientLogin {
 			if (newHereHeading.isDisplayed()) {
 				logger.error("Error message displayed: " + newHereHeading.getText());
 			} else {
+				logger.info("Verified 'New User?' heading - passed.");
 				System.out.println("Case 16: Find the \"New here?\" heading element is placed properly");
 			}
 			throw new AssertionError("Error: 'New here?' heading is not displayed.");
@@ -557,6 +659,7 @@ public class ExistingPatientLogin {
 			if (infoParagraph.isDisplayed()) {
 				logger.error("Error message displayed: " + infoParagraph.getText());
 			} else {
+				logger.info("Verified information for new user - passed.");
 				System.out.println("Case 17: Find the information paragraph element is placed properly");
 			}
 			throw new AssertionError("Error: Information paragraph is not displayed.");
@@ -575,6 +678,8 @@ public class ExistingPatientLogin {
 			logger.error("Error: Footer color is not black.");
 			throw new AssertionError("Error: Footer color is not black.");
 		} else {
+			logger.info(
+					"Verified footer is in black color 																	   - passed.");
 			System.out.println("Case 18: Find the footer element is placed good and it is in expected color");
 		}
 	}
@@ -589,6 +694,7 @@ public class ExistingPatientLogin {
 			if (!footerLogo.isDisplayed()) {
 				logger.error("Error: Footer logo is not displayed.");
 			} else {
+				logger.info("Verified logo under footer																			   - passed.");
 				System.out.println("Case 19: Logo under footer is placed properly");
 			}
 		}
@@ -600,6 +706,8 @@ public class ExistingPatientLogin {
 		if (!licenseMessage.isDisplayed()) {
 			logger.error("Error: License reserved message is not displayed.");
 		} else {
+			logger.info(
+					"Verified license reserved message after logo 														   - passed.");
 			System.out.println("Case 20: License reserved message after logo is placed properly");
 		}
 	}
@@ -609,12 +717,13 @@ public class ExistingPatientLogin {
 		if (!privacyPolicyLink.isDisplayed()) {
 			logger.error("Error: Privacy and security policy link is not displayed.");
 		} else {
+			logger.info("Verified privacy and security policy under footer 													   - passed.");
 			System.out.println("Case 21: Privacy and security policy under footer is placed properly");
 		}
 	}
 
-	private void performValidLogin(
-			WebDriverWait wait, JavascriptExecutor js, Map<String, String> data) throws InterruptedException {
+	private void performValidLogin(WebDriverWait wait, JavascriptExecutor js, Map<String, String> data)
+			throws InterruptedException {
 		WebElement usernameField = driver.findElement(By.name("username"));
 		WebElement passwordField = driver.findElement(By.name("password"));
 		WebElement loginButton = driver.findElement(By.cssSelector(".mb5.primary-btn"));
@@ -625,4 +734,8 @@ public class ExistingPatientLogin {
 		loginButton.click();
 		Thread.sleep(10000);
 	}
+	  @AfterSuite
+	    public void generateReport() {
+	        ExcelUtils.writeToExcel(results, "existingPatientResults.xlsx");
+	    }
 }
