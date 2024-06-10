@@ -227,3 +227,55 @@ Session ID: 54c4e18ccb54a45c1413f59f52ac3b13
 2024-06-05 17:16:00.094 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling future date - passed.
 2024-06-05 17:16:10.478 [main] INFO  com.example.automate.NewPatientLogin - Creating new patient - passed.
 2024-06-05 17:16:13.415 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-06 10:31:08.029 [main] INFO  com.example.automate.NewPatientLogin - Home URL is verified - passed
+2024-06-06 10:31:08.039 [main] INFO  com.example.automate.NewPatientLogin - Opargo title and logo on the browser tab are verified - passed
+2024-06-06 10:31:09.076 [main] INFO  com.example.automate.NewPatientLogin - Patient Information page icon is displayed - passed.
+2024-06-06 10:31:09.144 [main] INFO  com.example.automate.NewPatientLogin - Home Tab Link - passed.
+2024-06-06 10:31:09.167 [main] INFO  com.example.automate.NewPatientLogin - Patient Information page title is displayed - passed.
+2024-06-06 10:31:09.463 [main] INFO  com.example.automate.NewPatientLogin - Test 'Empty Username and Password' - passed.
+2024-06-06 10:31:10.157 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling Invalid date - passed.
+2024-06-06 10:31:10.864 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling Invalid date - passed.
+2024-06-06 10:31:11.571 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling future date - passed.
+2024-06-06 10:31:23.980 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-06 11:00:13.449 [main] INFO  com.example.automate.NewPatientLogin - Home URL is verified - passed
+2024-06-06 11:00:13.474 [main] INFO  com.example.automate.NewPatientLogin - Opargo title and logo on the browser tab are verified - passed
+2024-06-06 11:00:14.551 [main] INFO  com.example.automate.NewPatientLogin - Patient Information page icon is displayed - passed.
+2024-06-06 11:00:14.623 [main] INFO  com.example.automate.NewPatientLogin - Home Tab Link - passed.
+2024-06-06 11:00:14.649 [main] INFO  com.example.automate.NewPatientLogin - Patient Information page title is displayed - passed.
+2024-06-06 11:00:14.975 [main] INFO  com.example.automate.NewPatientLogin - Test 'Empty Username and Password' - passed.
+2024-06-06 11:00:15.674 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling Invalid date - passed.
+2024-06-06 11:00:16.330 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling Invalid date - passed.
+2024-06-06 11:00:16.995 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling future date - passed.
+2024-06-06 11:00:18.137 [main] INFO  com.example.automate.NewPatientLogin - Test 'Empty Username and Password' - passed.
+2024-06-06 11:00:35.556 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:30:15.139 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:31:53.045 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:34:22.904 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:36:51.974 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:38:53.474 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:40:09.868 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:41:31.859 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:48:45.967 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:50:35.810 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:54:39.292 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:57:45.548 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 11:59:27.767 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 12:00:13.811 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-07 14:28:18.801 [main] INFO  com.example.automate.NewPatientLogin - Home URL is verified - passed
+2024-06-07 14:28:18.812 [main] INFO  com.example.automate.NewPatientLogin - Opargo title and logo on the browser tab are verified - passed
+2024-06-07 14:28:19.847 [main] INFO  com.example.automate.NewPatientLogin - Patient Information page icon is displayed - passed.
+2024-06-07 14:28:19.924 [main] INFO  com.example.automate.NewPatientLogin - Home Tab Link - passed.
+2024-06-07 14:28:19.954 [main] INFO  com.example.automate.NewPatientLogin - Patient Information page title is displayed - passed.
+2024-06-07 14:28:20.289 [main] INFO  com.example.automate.NewPatientLogin - Test 'Empty Username and Password' - passed.
+2024-06-07 14:28:21.229 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling Invalid date - passed.
+2024-06-07 14:28:22.531 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling Invalid date - passed.
+2024-06-07 14:28:25.098 [main] INFO  com.example.automate.NewPatientLogin - Error message found while handling future date - passed.
+2024-06-07 14:28:27.573 [main] INFO  com.example.automate.NewPatientLogin - Test 'Empty Username and Password' - passed.
+2024-06-07 14:28:45.711 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-09 14:16:45.105 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-09 14:23:28.121 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-09 14:27:50.082 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-10 10:18:49.173 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-10 10:19:30.934 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-10 10:26:06.262 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.
+2024-06-10 10:36:54.499 [main] INFO  com.example.automate.NewPatientLogin - Closed the browser.

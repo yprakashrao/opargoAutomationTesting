@@ -10,6 +10,7 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,12 +36,13 @@ public class Recaptchalogin {
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
-		 options.addExtensions(new
-		 File("C:\\workspace\\BE\\opargoAutomationTesting\\mpbjkejclgfgadiemmefgebjfooflfhl-2.0.1-Crx4Chrome.com.crx"));
+		options.addExtensions(new File(
+				"C:\\workspace\\BE\\opargoAutomationTesting\\mpbjkejclgfgadiemmefgebjfooflfhl-2.0.1-Crx4Chrome.com.crx"));
 		options.addArguments("--start-maximized");
 		System.out.println();
 		driver = new ChromeDriver(options);
 	}
+
 	@Test
 	public void loginPage() throws InterruptedException, IOException {
 		long startTime = System.currentTimeMillis();
@@ -596,28 +598,27 @@ public class Recaptchalogin {
 	}
 
 	private void creatingNewPatient(Map<String, String> data, WebDriverWait wait, JavascriptExecutor js,
-	        WebElement patientLookupButton, WebElement lastNameField, WebElement firstNameField,
-	        WebElement birthMonthField, WebElement birthDayField, WebElement birthYearField)
-	        throws InterruptedException {
-	    long startTime = System.currentTimeMillis();  // Record the start time
-	    clearAndFillFields(driver, wait);
-	    birthMonthField.sendKeys("02");
-	    clearAndFillFields(driver, wait);
-	    lastNameField.sendKeys(data.get("patientLastName"));
-	    firstNameField.sendKeys(data.get("patientFirstName"));
-	    birthMonthField.sendKeys(data.get("patientMiddleName"));
-	    birthDayField.sendKeys(data.get("patientBirthDay"));
-	    birthYearField.sendKeys(data.get("patientBirthYear"));
-	    birthMonthField.sendKeys(data.get("patientBirthMonth"));
-	    patientLookupButton.click();
-	    Thread.sleep(8000);  // Wait for patient selection
-	    driver.findElement(By.cssSelector("button.primary-btn")).click();
-	    long executionTime = System.currentTimeMillis() - startTime;
-	    results.add(new TestResult("Creating New Patient", "Passed", executionTime, "NA"));
-	    logger.info("Creating new patient - passed.");
-	    ExcelUtils.writeToExcel(results, "newPatientResults.xlsx");
+			WebElement patientLookupButton, WebElement lastNameField, WebElement firstNameField,
+			WebElement birthMonthField, WebElement birthDayField, WebElement birthYearField)
+			throws InterruptedException {
+		long startTime = System.currentTimeMillis(); // Record the start time
+		clearAndFillFields(driver, wait);
+		birthMonthField.sendKeys("02");
+		clearAndFillFields(driver, wait);
+		lastNameField.sendKeys(data.get("patientLastName"));
+		firstNameField.sendKeys(data.get("patientFirstName"));
+		birthMonthField.sendKeys(data.get("patientMiddleName"));
+		birthDayField.sendKeys(data.get("patientBirthDay"));
+		birthYearField.sendKeys(data.get("patientBirthYear"));
+		birthMonthField.sendKeys(data.get("patientBirthMonth"));
+		patientLookupButton.click();
+		Thread.sleep(8000); // Wait for patient selection
+		driver.findElement(By.cssSelector("button.primary-btn")).click();
+		long executionTime = System.currentTimeMillis() - startTime;
+		results.add(new TestResult("Creating New Patient", "Passed", executionTime, "NA"));
+		logger.info("Creating new patient - passed.");
+		ExcelUtils.writeToExcel(results, "newPatientResults.xlsx");
 	}
-
 
 	private static void clearAndFillFields(WebDriver driver, WebDriverWait wait) {
 		try {
@@ -750,27 +751,40 @@ public class Recaptchalogin {
 		passwordField.clear();
 		usernameField.sendKeys("invalidUser");
 		passwordField.sendKeys("DocUser$444");
+		System.out.println("Entered into buster captcha1");
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='reCAPTCHA']")));
 		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("recaptcha-anchor")));
+		System.out.println("Entered into buster captcha2" + checkbox);
 		checkbox.click();
+		System.out.println("Entered into buster captcha3");
+
 		driver.switchTo().defaultContent();
 		Thread.sleep(1000);
 		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 		int intervalInSeconds = 1;
+		System.out.println("Entered into buster captcha4");
 		while (true) {
 			Thread.sleep(1000);
-		    try {
-		        WebElement button = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("solver-button")));
-		        if (!button.isDisplayed()) {
-		            break;
-		        }
-		        button.click();
-		        Thread.sleep(intervalInSeconds * 1000);
-		    } catch (Exception e) {
-		        System.out.println("Exception occurred: " + e.getMessage());
-		        break;
-		    }
+			System.out.println("Entered into buster captcha5");
+			try {
+				System.out.println("Entered into buster captcha6");
+				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
+						By.xpath("//iframe[@title='recaptcha challenge expires in two minutes']")));
+				WebElement button = wait1.until(ExpectedConditions
+						.elementToBeClickable(By.xpath("//div[@class='button-holder help-button-holder']")));
+				System.out.println("Entered into buster captcha7" + button);
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				driver.switchTo().defaultContent();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
 		}
+
 		loginButton.click();
 		long executionTime = System.currentTimeMillis() - startTime;
 		WebElement errorMessage = wait.until(
@@ -797,26 +811,35 @@ public class Recaptchalogin {
 		passwordField.clear();
 		usernameField.sendKeys("yp_co_a");
 		passwordField.sendKeys("invalidPassword");
+		System.out.println("Entered into buster captcha1");
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='reCAPTCHA']")));
-		WebElement checkbox = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("solver-button")));
+		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("solver-button")));
 		checkbox.click();
+		System.out.println("Entered into buster captcha2");
 		driver.switchTo().defaultContent();
 		Thread.sleep(1000);
 		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 		int intervalInSeconds = 1;
+		System.out.println("Entered into buster captcha3");
 		while (true) {
 			Thread.sleep(1000);
-		    try {
-		        WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
-		        if (!button.isDisplayed()) {
-		            break;
-		        }
-		        button.click();
-		        Thread.sleep(intervalInSeconds * 1000);
-		    } catch (Exception e) {
-		        System.out.println("Exception occurred: " + e.getMessage());
-		        break;
-		    }
+			System.out.println("Entered into buster captcha4");
+			try {
+				wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
+						By.xpath("//iframe[@title='recaptcha challenge expires in two minutes']")));
+				WebElement button = wait1.until(ExpectedConditions
+						.elementToBeClickable(By.xpath("//div[@class='button-holder help-button-holder']")));
+				System.out.println(button);
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				driver.switchTo().defaultContent();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
 		}
 		loginButton.click();
 		WebElement errorMessageElement1 = wait.until(
@@ -845,17 +868,17 @@ public class Recaptchalogin {
 		int intervalInSeconds = 1;
 		while (true) {
 			Thread.sleep(1000);
-		    try {
-		        WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
-		        if (!button.isDisplayed()) {
-		            break;
-		        }
-		        button.click();
-		        Thread.sleep(intervalInSeconds * 1000);
-		    } catch (Exception e) {
-		        System.out.println("Exception occurred: " + e.getMessage());
-		        break;
-		    }
+			try {
+				WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
 		}
 		loginButton.click();
 		WebElement errorMessageElement2 = wait.until(
@@ -884,17 +907,17 @@ public class Recaptchalogin {
 		int intervalInSeconds = 1;
 		while (true) {
 			Thread.sleep(1000);
-		    try {
-		        WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
-		        if (!button.isDisplayed()) {
-		            break;
-		        }
-		        button.click();
-		        Thread.sleep(intervalInSeconds * 1000);
-		    } catch (Exception e) {
-		        System.out.println("Exception occurred: " + e.getMessage());
-		        break;
-		    }
+			try {
+				WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
 		}
 		loginButton.click();
 		WebElement errorMessageElement3 = wait.until(
@@ -923,17 +946,17 @@ public class Recaptchalogin {
 		int intervalInSeconds = 1;
 		while (true) {
 			Thread.sleep(1000);
-		    try {
-		        WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
-		        if (!button.isDisplayed()) {
-		            break;
-		        }
-		        button.click();
-		        Thread.sleep(intervalInSeconds * 1000);
-		    } catch (Exception e) {
-		        System.out.println("Exception occurred: " + e.getMessage());
-		        break;
-		    }
+			try {
+				WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
 		}
 		loginButton.click();
 		WebElement errorMessageElement4 = wait.until(
@@ -1187,17 +1210,17 @@ public class Recaptchalogin {
 		int intervalInSeconds = 1;
 		while (true) {
 			Thread.sleep(1000);
-		    try {
-		        WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
-		        if (!button.isDisplayed()) {
-		            break;
-		        }
-		        button.click();
-		        Thread.sleep(intervalInSeconds * 1000);
-		    } catch (Exception e) {
-		        System.out.println("Exception occurred: " + e.getMessage());
-		        break;
-		    }
+			try {
+				WebElement button = wait1.until(ExpectedConditions.elementToBeClickable(By.className("button-holder")));
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
 		}
 		loginButton.click();
 		Thread.sleep(10000);
@@ -1210,7 +1233,7 @@ public class Recaptchalogin {
 		} else {
 			results.add(new TestResult("Perform valid login", "Passed", executionTime, "NA"));
 		}
-		
+
 	}
 
 	@AfterSuite

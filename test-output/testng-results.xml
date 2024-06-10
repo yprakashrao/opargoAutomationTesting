@@ -2,39 +2,40 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-05T17:14:44 IST" name="Default suite" finished-at="2024-06-05T17:16:13 IST" duration-ms="89385">
+  <suite started-at="2024-06-10T10:36:39 IST" name="Default suite" finished-at="2024-06-10T10:36:54 IST" duration-ms="14921">
     <groups>
     </groups>
-    <test started-at="2024-06-05T17:14:44 IST" name="Default test" finished-at="2024-06-05T17:16:13 IST" duration-ms="89385">
-      <class name="com.example.automate.NewPatientLogin">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.example.automate.NewPatientLogin@5d497a91]" started-at="2024-06-05T17:14:44 IST" name="setUp" finished-at="2024-06-05T17:14:46 IST" duration-ms="2783" status="PASS">
+    <test started-at="2024-06-10T10:36:39 IST" name="Default test" finished-at="2024-06-10T10:36:54 IST" duration-ms="14921">
+      <class name="com.example.automate.Recaptchalogin">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.example.automate.Recaptchalogin@176f7f3b]" started-at="2024-06-10T10:36:39 IST" name="setUp" finished-at="2024-06-10T10:36:43 IST" duration-ms="3937" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="loginPage()[pri:0, instance:com.example.automate.NewPatientLogin@5d497a91]" started-at="2024-06-05T17:14:47 IST" name="loginPage" finished-at="2024-06-05T17:16:11 IST" duration-ms="84226" status="FAIL">
+        <test-method signature="loginPage()[pri:0, instance:com.example.automate.Recaptchalogin@176f7f3b]" started-at="2024-06-10T10:36:43 IST" name="loginPage" finished-at="2024-06-10T10:36:52 IST" duration-ms="8594" status="FAIL">
           <exception class="org.openqa.selenium.NoSuchElementException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"css selector","selector":"clear-fields-button-selector"}
+              <![CDATA[no such element: Unable to locate element: {"method":"css selector","selector":"*[name='username']"}
   (Session info: chrome=126.0.6423.2)
 For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: '4.21.0', revision: '79ed462ef4'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c0a813fdd1e6ce89b0abc35ff7f3b65b, findElement {value=clear-fields-button-selector, using=css selector}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58770}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58770/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c0a813fdd1e6ce89b0abc35ff7f3b65b]]>
+Command: [b52bb911d54696170ba58a02df940001, findElement {value=username, using=name}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62428}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62428/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b52bb911d54696170ba58a02df940001]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"clear-fields-button-selector"}
+              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"*[name='username']"}
   (Session info: chrome=126.0.6423.2)
 For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: '4.21.0', revision: '79ed462ef4'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [c0a813fdd1e6ce89b0abc35ff7f3b65b, findElement {value=clear-fields-button-selector, using=css selector}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58770}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58770/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: c0a813fdd1e6ce89b0abc35ff7f3b65b
-at jdk.internal.reflect.GeneratedConstructorAccessor33.newInstance(Unknown Source)
+Command: [b52bb911d54696170ba58a02df940001, findElement {value=username, using=name}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6423.2, chrome: {chromedriverVersion: 125.0.6396.3 (996e2dd9818f0..., userDataDir: C:\Users\solve\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62428}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62428/devtoo..., se:cdpVersion: 126.0.6423.2, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b52bb911d54696170ba58a02df940001
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
 at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
 at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
@@ -45,10 +46,10 @@ at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(Driver
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
 at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:66)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
 at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
-at com.example.automate.NewPatientLogin.loginPage(NewPatientLogin.java:92)
+at com.example.automate.Recaptchalogin.loginPage(Recaptchalogin.java:59)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -83,15 +84,15 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginPage -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.automate.NewPatientLogin@5d497a91]" started-at="2024-06-05T17:16:11 IST" name="tearDown" finished-at="2024-06-05T17:16:13 IST" duration-ms="2007" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.example.automate.Recaptchalogin@176f7f3b]" started-at="2024-06-10T10:36:52 IST" name="tearDown" finished-at="2024-06-10T10:36:54 IST" duration-ms="2006" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="generateReport()[pri:0, instance:com.example.automate.NewPatientLogin@5d497a91]" started-at="2024-06-05T17:16:13 IST" name="generateReport" finished-at="2024-06-05T17:16:13 IST" duration-ms="324" status="PASS">
+        <test-method is-config="true" signature="generateReport()[pri:0, instance:com.example.automate.Recaptchalogin@176f7f3b]" started-at="2024-06-10T10:36:54 IST" name="generateReport" finished-at="2024-06-10T10:36:56 IST" duration-ms="1652" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- generateReport -->
-      </class> <!-- com.example.automate.NewPatientLogin -->
+      </class> <!-- com.example.automate.Recaptchalogin -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -6,45 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import org.openqa.selenium.interactions.Actions;
-import org.bouncycastle.asn1.dvcs.Data;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import io.qameta.allure.Step;
 
 @Listeners(PerformanceListener.class)
-public class NewPatientLogin {
-
+public class NewPatientLogin extends BaseTest {
 	private static final Logger logger = LoggerFactory.getLogger(NewPatientLogin.class);
-
-	public WebDriver driver;
-	private List<TestResult> results = new ArrayList<>();
-
-	@BeforeMethod
-	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		// options.addExtensions(new
-		// File("C:\\workspace\\BE\\loadtesting\\load-test-project\\mpbjkejclgfgadiemmefgebjfooflfhl-2.0.1-Crx4Chrome.com.crx"));
-		options.addArguments("--start-maximized");
-		System.out.println();
-		driver = new ChromeDriver(options);
-	}
+	private List<TestResult> results = new ArrayList();
 
 	@Test
 	public void loginPage() throws InterruptedException, IOException {
@@ -58,7 +39,6 @@ public class NewPatientLogin {
 		// logger.info("Excel data loaded successfully.");
 
 		navigatingToLoginPage();
-
 		WebElement usernameField = driver.findElement(By.name("username"));
 		WebElement passwordField = driver.findElement(By.name("password"));
 		WebElement loginButton = driver.findElement(By.cssSelector(".mb5.primary-btn"));
@@ -83,57 +63,30 @@ public class NewPatientLogin {
 		checkLicenseMessage();
 		checkPrivacyPolicyLink();
 		performValidLogin(wait, js, data);
-
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+		boolean allPassedBeforeLogin = true;
+		
+        for (TestResult result : results) {
+            if (!"Passed".equals(result.getStatus())) {
+                allPassedBeforeLogin = false;
+                break;
+            }
+        }
+        if(allPassedBeforeLogin) {
+        	results.add(new TestResult("***** LOGIN PAGE *****", "Passed", executionTime,
+    				"lOGIN PAGE IS PASSED"));
+        }else {
+        	results.add(new TestResult("***** LOGIN PAGE *****", "Failed", executionTime,
+    				"lOGIN PAGE IS PASSED"));
+        }
+		
+		
 		handlePatientInformationPage(data, wait, js);
 		// emptyPrimaryInsuranceProvider(wait, js, data);
 		// executionwithAllRequiredFields(wait, js, data);
 
-		// 6. Verify the presence and functionality of the "Clear Fields" button
-		WebElement clearFieldsButton = driver.findElement(By.cssSelector("clear-fields-button-selector"));
-		if (clearFieldsButton == null || !clearFieldsButton.isDisplayed()) {
-			logger.error("Error: 'Clear Fields' button is not displayed.");
-		}
 
-		WebElement lastNameField = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientLastName")));
-		Thread.sleep(10000);
-		lastNameField.clear();
-		lastNameField.sendKeys(data.get("patientLastName"));
-		logger.info("Entered patient last name.");
-
-		WebElement firstNameField = driver.findElement(By.name("patientFirstName"));
-		firstNameField.sendKeys(data.get("patientFirstName"));
-		logger.info("Entered patient first name.");
-
-		WebElement middleNameField = driver.findElement(By.name("patientMiddleName"));
-		middleNameField.sendKeys(data.get("patientMiddleName"));
-		logger.info("Entered patient middle name.");
-
-		WebElement birthMonthField = driver.findElement(By.name("patientBirthMonth"));
-		birthMonthField.sendKeys(data.get("patientBirthMonth"));
-		logger.info("Entered patient birth month.");
-
-		WebElement birthDayField = driver.findElement(By.name("patientBirthDay"));
-		birthDayField.sendKeys(data.get("patientBirthDay"));
-		logger.info("Entered patient birth day.");
-
-		WebElement birthYearField = driver.findElement(By.name("patientBirthYear"));
-		birthYearField.sendKeys(data.get("patientBirthYear"));
-		logger.info("Entered patient birth year.");
-
-		WebElement patientLookupButton = driver
-				.findElement(By.cssSelector("input[type='submit'][value='Patient Lookup'].primary-btn"));
-		patientLookupButton.click();
-		Thread.sleep(10000);
-		logger.info("Clicked patient lookup button.");
-
-		System.out.println("clicking newpatient button");
-		WebElement newPatientButton = driver.findElement(By.cssSelector("button.btn.center-block.primary-btn.mb10"));
-		newPatientButton.click();
-		Thread.sleep(500);
-		logger.info("Clicked new patient button.");
-
-		System.out.println("Entered New User Name and DOB successfully...");
 
 		WebElement genderDropdown = driver.findElement(By.name("patientGender"));
 		js.executeScript("arguments[0].scrollIntoView(true);", genderDropdown);
@@ -394,8 +347,7 @@ public class NewPatientLogin {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonElement);
 		logger.info("Clicked 'Find First Available' button.");
 
-		long endTime = System.currentTimeMillis();
-		long executionTime = endTime - startTime;
+		
 		System.out.println("Execution time: " + executionTime + " milliseconds");
 		logger.info("Execution time: " + executionTime + " milliseconds");
 
@@ -452,6 +404,8 @@ public class NewPatientLogin {
 				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthDay")));
 		WebElement birthYearField = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.name("patientBirthYear")));
+		WebElement clearFieldsButton = wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.cssSelector("button.btn.btn-default.pull-right.ng-star-inserted")));
 		WebElement patientLookupButton = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.cssSelector("input[type='submit'][value='Patient Lookup'].primary-btn")));
 		Thread.sleep(1000);
@@ -468,9 +422,80 @@ public class NewPatientLogin {
 		handleInvalidMonth(data, wait, patientLookupButton, birthMonthField, birthDayField, birthYearField);
 		handleFutureDateOfBirth(data, wait, patientLookupButton, lastNameField, firstNameField, birthMonthField,
 				birthDayField, birthYearField);
+		clearFieldsButtonFunctionality(data, wait, patientLookupButton, lastNameField, firstNameField, birthMonthField,
+				birthDayField, birthYearField,clearFieldsButton,patientMiddleName);
+		signoutDropdownFunctionality(wait,js);
 		Thread.sleep(1000);
 		creatingNewPatient(data, wait, js, patientLookupButton, lastNameField, firstNameField, birthMonthField,
 				birthDayField, birthYearField);
+	}
+
+	private void signoutDropdownFunctionality(WebDriverWait wait, JavascriptExecutor js) {
+        long executionTime = System.currentTimeMillis(); // Example execution time
+
+        try {
+            WebElement profileDropdown = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@data-bs-toggle='dropdown']")));
+            js.executeScript("arguments[0].click();", profileDropdown);
+
+            WebElement parentElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.d-flex.row.forms.justify-content-end")));
+            List<WebElement> dropdownActions = parentElement.findElements(By.tagName("a"));
+            System.out.println(dropdownActions);
+            Thread.sleep(5000);
+
+            try {
+                Assert.assertFalse(dropdownActions.isEmpty(), "Error: No actions available in the manage profile and signout dropdown.");
+                System.out.println("9. Dropdown actions are present.");
+
+                for (WebElement action : dropdownActions) {
+                    try {
+                        Assert.assertFalse(action.getText().isEmpty(), "Error: Description for an action in the dropdown is missing.");
+                    } catch (AssertionError e) {
+                        results.add(new TestResult("Handle Empty Fields", "Failed", executionTime, "Expected error message is not visible for patient lookup button upon empty fields."));
+                        logger.error("Error: Description for an action in the dropdown is missing.", e);
+                        throw e;
+                    }
+                }
+
+                results.add(new TestResult("Handle Empty Fields", "Passed", executionTime, "All dropdown actions are correctly described."));
+            } catch (AssertionError e) {
+                results.add(new TestResult("Handle Empty Fields", "Failed", executionTime, "No actions available in the manage profile and signout dropdown."));
+                logger.error("Error: No actions available in the manage profile and signout dropdown.", e);
+                throw e;
+            }
+        } catch (Exception e) {
+            results.add(new TestResult("Handle Empty Fields", "Failed", executionTime, "Unable to interact with profile dropdown or find parent element."));
+            logger.error("Error: Unable to interact with profile dropdown or find parent element.", e);
+        }
+    }
+
+	private void clearFieldsButtonFunctionality(Map<String, String> data, WebDriverWait wait,
+			WebElement patientLookupButton, WebElement lastNameField, WebElement firstNameField,
+			WebElement birthMonthField, WebElement birthDayField, WebElement birthYearField, WebElement clearFieldsButton, WebElement patientMiddleName) throws InterruptedException {
+		long startTime = System.currentTimeMillis(); // Record the start time
+		clearAndFillFields(driver, wait);
+	    lastNameField.sendKeys(data.get("patientLastName"));
+	    firstNameField.sendKeys(data.get("patientFirstName"));
+	    birthMonthField.sendKeys(data.get("patientMiddleName"));
+	    birthDayField.sendKeys(data.get("patientBirthDay"));
+	    birthYearField.sendKeys(data.get("patientBirthYear"));
+	    birthMonthField.sendKeys(data.get("patientBirthMonth"));
+	    clearFieldsButton.click();
+		boolean fieldsCleared = lastNameField.getAttribute("value").isEmpty()
+				&& firstNameField.getAttribute("value").isEmpty()
+				&& patientMiddleName.getAttribute("value").isEmpty()
+				&&lastNameField.getAttribute("value").isEmpty()
+				&& birthMonthField.getAttribute("value").isEmpty()
+				&& birthDayField.getAttribute("value").isEmpty()
+				&& birthYearField.getAttribute("value").isEmpty();
+		long executionTime = System.currentTimeMillis() - startTime; // Calculate the execution time
+		if (!fieldsCleared) {
+			results.add(new TestResult("Handle Empty Fields", "Failed", executionTime,
+					"Expected error message is not visible for patient lookup button upon empty fields."));
+			logger.error("Error: Expected Error is not visible for patient lookup button upon empty fields");
+		} else {
+			results.add(new TestResult("Handle Empty Fields", "Passed", executionTime, "NA"));
+			logger.info("Test 'Empty Username and Password' - passed.");
+		}
 	}
 
 	private void patientInformationTitle() {
@@ -566,30 +591,16 @@ public class NewPatientLogin {
 			WebElement birthMonthField, WebElement birthDayField, WebElement birthYearField)
 			throws InterruptedException {
 		long startTime = System.currentTimeMillis(); // Record the start time
-
-		// Clear and fill the fields with provided data
 		clearAndFillFields(driver, wait);
-
-		// Enter an invalid birth month, the provided birth day, and the provided birth
-		// year
 		birthMonthField.sendKeys("14");
 		birthDayField.sendKeys(data.get("patientBirthDay"));
 		birthYearField.sendKeys(data.get("patientBirthYear"));
-
-		// Click on the patient lookup button
 		patientLookupButton.click();
 		Thread.sleep(100); // Wait for the error message to appear
-
-		// Find the error message element
 		WebElement errorMessage = driver.findElement(By.cssSelector("p.text-danger"));
 		long executionTime = System.currentTimeMillis() - startTime; // Calculate the execution time
-
-		// Get the text of the error message
 		String errorText = errorMessage.getText();
-
-		// Check if the error message indicates an invalid date
 		if (!"Invalid Date".equals(errorText)) {
-			// Log the failure result if the error message is not as expected
 			results.add(new TestResult("Handle Invalid Month", "Failed", executionTime,
 					"Invalid Date of birth is not handled correctly."));
 			logger.error("Error: Invalid Date of birth is accepting by patient information page");
@@ -707,7 +718,6 @@ public class NewPatientLogin {
 					"Expected URL " + expectedUrl + " is not matching with actual URL " + actualUrl));
 			logger.error("Error: Expected URL " + expectedUrl + " is not matching with actual URL " + actualUrl);
 		} else {
-			results.add(new TestResult("Home PAge", "Home Page", executionTime, "Home Page"));
 			results.add(new TestResult("Verifying the Home URL", "Passed", executionTime, "NA"));
 			logger.info("Home URL is verified - passed");
 		}
@@ -724,8 +734,8 @@ public class NewPatientLogin {
 
 	private void navigatingToLoginPage() throws InterruptedException {
 		long startTime = System.currentTimeMillis();
-		driver.get("http://127.0.0.1:90/#/login");
-		String expectedUrl = "http://127.0.0.1:90/#/login";
+		driver.get("https://allscripts-qa.opargo.com/v2/#/login");
+		String expectedUrl = "https://allscripts-qa.opargo.com/v2/#/login";
 		long endTime = System.currentTimeMillis();
 		long executionTime = endTime - startTime;
 		if (!expectedUrl.equals(driver.getCurrentUrl())) {
@@ -750,12 +760,44 @@ public class NewPatientLogin {
 	}
 
 	private void loginWithInvalidUsername(WebElement usernameField, WebElement passwordField, WebElement loginButton,
-			String expectedErrorMessage, WebDriverWait wait) {
+			String expectedErrorMessage, WebDriverWait wait) throws InterruptedException {
 		long startTime = System.currentTimeMillis();
 		usernameField.clear();
 		passwordField.clear();
 		usernameField.sendKeys("invalidUser");
 		passwordField.sendKeys("DocUser$444");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='reCAPTCHA']")));
+		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("recaptcha-anchor")));
+		System.out.println("Entered into buster captcha2" + checkbox);
+		checkbox.click();
+		System.out.println("Entered into buster captcha3");
+
+		driver.switchTo().defaultContent();
+		Thread.sleep(1000);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		int intervalInSeconds = 1;
+		System.out.println("Entered into buster captcha4");
+		while (true) {
+			Thread.sleep(1000);
+			System.out.println("Entered into buster captcha5");
+			try {
+				System.out.println("Entered into buster captcha6");
+				wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
+						By.xpath("//iframe[@title='recaptcha challenge expires in two minutes']")));
+				WebElement button = wait1.until(ExpectedConditions
+						.elementToBeClickable(By.xpath("//div[@class='button-holder help-button-holder']")));
+				System.out.println("Entered into buster captcha7" + button);
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				driver.switchTo().defaultContent();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
+		}
 		loginButton.click();
 		long executionTime = System.currentTimeMillis() - startTime;
 		WebElement errorMessage = wait.until(
@@ -772,16 +814,47 @@ public class NewPatientLogin {
 				results.add(new TestResult("Login with invalid username", "Passed", executionTime, "NA"));
 			}
 		}
-
 	}
 
 	private void loginWithInvalidPassword(WebElement usernameField, WebElement passwordField, WebElement loginButton,
-			String expectedErrorMessage, WebDriverWait wait) {
+			String expectedErrorMessage, WebDriverWait wait) throws InterruptedException {
 		long startTime = System.currentTimeMillis();
 		usernameField.clear();
 		passwordField.clear();
 		usernameField.sendKeys("yp_co_a");
 		passwordField.sendKeys("invalidPassword");
+		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@title='reCAPTCHA']")));
+		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("recaptcha-anchor")));
+		System.out.println("Entered into buster captcha2" + checkbox);
+		checkbox.click();
+		System.out.println("Entered into buster captcha3");
+
+		driver.switchTo().defaultContent();
+		Thread.sleep(1000);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+		int intervalInSeconds = 1;
+		System.out.println("Entered into buster captcha4");
+		while (true) {
+			Thread.sleep(1000);
+			System.out.println("Entered into buster captcha5");
+			try {
+				System.out.println("Entered into buster captcha6");
+				wait1.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
+						By.xpath("//iframe[@title='recaptcha challenge expires in two minutes']")));
+				WebElement button = wait1.until(ExpectedConditions
+						.elementToBeClickable(By.xpath("//div[@class='button-holder help-button-holder']")));
+				System.out.println("Entered into buster captcha7" + button);
+				if (!button.isDisplayed()) {
+					break;
+				}
+				button.click();
+				driver.switchTo().defaultContent();
+				Thread.sleep(intervalInSeconds * 1000);
+			} catch (Exception e) {
+				System.out.println("Exception occurred: " + e.getMessage());
+				break;
+			}
+		}
 		loginButton.click();
 		WebElement errorMessageElement1 = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb5.text-danger.ng-star-inserted")));
@@ -1084,17 +1157,9 @@ public class NewPatientLogin {
 
 	@AfterSuite
 	public void generateReport() {
-
 		ExcelUtils.writeToExcel(results, "newPatientResults.xlsx");
 	}
 
-	@AfterMethod
-	public void tearDown() throws InterruptedException {
-		Thread.sleep(2000);
-		if (driver != null) {
-			// driver.quit();
-		}
-		logger.info("Closed the browser." + "" + "");
-	}
+	
 
 }
