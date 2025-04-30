@@ -61,7 +61,7 @@ public class ExistingPatientLogin {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(300));
 
-		driver.get("http://127.0.0.1:90/#/login");
+		driver.get("https://allscripts-qa.opargo.com/v2/#/login");
 
 		// 1. login page
 		Assert.assertEquals(driver.getTitle(), "Opargo");

@@ -454,7 +454,7 @@ public class Recaptchalogin {
 		Thread.sleep(1000);
 		System.out.println(patientLookupButton + "" + lastNameField + "" + firstNameField + "" + birthDayField + ""
 				+ birthMonthField + "" + birthYearField);
-		String expectedUrl = "http://127.0.0.1:90/#/home";
+		String expectedUrl = "https://allscripts-qa.opargo.com/v2/#/login";
 		verifyUrl(expectedUrl);
 		Thread.sleep(1000);
 		pageIcon();
